@@ -33,7 +33,7 @@ class Question
   property :body,       Text
   property :type,       String
   
-  has_n :response
+  has n, :response
 end
 
 # Our Sleep Deprived version of an interface
@@ -44,7 +44,7 @@ class Response
   
   belongs_to :user
   
-  has_n :comment
+  has n, :comment
 end
 
 class Answer < Response
@@ -54,9 +54,17 @@ end
 class Comment < Response
   belongs_to :response
 end
-  
+
+DataMapper.finalize
+DataMapper.auto_upgrade!
 ## PATHS
 
 get '/' do
-  "Fish Dog"
+  @users = User.all :order=>[:username]
+  haml :index
+end
+
+get '/add/:user/:first/:last/:dob' do
+  User.create(:username=>params[:user],:firstname=>params[:first],:lastname=>params[:last],:dob=>params[:dob])
+  redirect '/'
 end
