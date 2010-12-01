@@ -56,8 +56,9 @@ class Comment
   property :body,       Text
   
   belongs_to :user
-
-  has n, :comment
+  belongs_to :answer
+  
+  #has n, :comment
 end
 
 DataMapper.finalize
@@ -88,13 +89,29 @@ post '/addquestion' do
   haml :question_success
 end
 
+get '/addcomment/:type/:id' do
+  haml :comment_add
+end
+
+post '/addcomment/:type/:id' do
+  
+  if params[:type] == 'answer'
+    ans = Answer.get(params[:id])
+    @comment = Comment.create(:body=>params[:comment], :user=>User.get(1), :answer=>ans)
+    redirect '/question/'+ans.question.id.to_s
+  else
+    
+  end
+  haml :comment_add
+end
+
 get '/question/:id' do
   @question = Question.get(params[:id])
   haml :question
 end
 
 post '/question/:id' do
-  question = Question.get(params[:id])
-  Answer.create(:body=>params[:answer], :user=>User.get(1), :question=>question)
+  @question = Question.get(params[:id])
+  Answer.create(:body=>params[:answer], :user=>User.get(1), :question=>@question)
   haml :question
 end

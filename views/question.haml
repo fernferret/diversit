@@ -16,4 +16,12 @@
       %br
       %br
       - @question.answer.each do |answer|
-        = answer.body
+        = '-'
+        %a{:href=>'/addcomment/answer/'+answer.id.to_s}
+          = answer.body
+        %br
+        - answer.comment.each do |com|
+          = '--'
+          = com.body
+          %br
+        %br
