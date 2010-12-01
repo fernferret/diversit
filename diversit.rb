@@ -25,7 +25,8 @@ class User
   property :lastname,   String
   property :dob,        Date
   
-  has n, :response
+  has n, :answer
+  has n, :comment
 end
 
 class Question
@@ -34,26 +35,29 @@ class Question
   property :body,       String
   property :type,       String
   property :timestamp,  DateTime
-  has n, :response
+  has n, :answer
 end
 
-# Our Sleep Deprived version of an interface
-class Response
+# Our Sleep Deprived version, fix with inheritance
+
+class Answer
   include DataMapper::Resource
   property :id,         Serial
   property :body,       Text
   
   belongs_to :user
-  
+  belongs_to :question
   has n, :comment
 end
 
-class Answer < Response
-  belongs_to :question
-end
+class Comment
+  include DataMapper::Resource
+  property :id,         Serial
+  property :body,       Text
+  
+  belongs_to :user
 
-class Comment < Response
-  belongs_to :response
+  has n, :comment
 end
 
 DataMapper.finalize
@@ -80,6 +84,17 @@ get '/addquestion' do
 end
 
 post '/addquestion' do
-  @question = Question.create(:body=>params[:question], :type=>'free')
+  @question = Question.create(:body=>params[:question], :type=>'free', :timestamp=>Time.now)
   haml :question_success
+end
+
+get '/question/:id' do
+  @question = Question.get(params[:id])
+  haml :question
+end
+
+post '/question/:id' do
+  question = Question.get(params[:id])
+  Answer.create(:body=>params[:answer], :user=>User.get(1), :question=>question)
+  haml :question
 end
