@@ -5,7 +5,7 @@
     %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
     %title="Shiny Sriram"
   %body
-    - if @question.id == nil
+    - if @question == nil
       = 'Sorry, Question not found.'
     - else
       %b
@@ -25,3 +25,5 @@
           = com.body
           %br
         %br
+      %a{:href=>'/questions'}
+        = 'View all questions'

@@ -8,4 +8,6 @@
     = 'Add a Question:<br />'
     %form{:action=>'/addquestion', :method=>'POST'}
       %input{:type=>'text', :name=>'question'}
-      %submit
+      %input{:type=>'submit'}
+    %a{:href=>'/questions'}
+      = 'View all questions'
