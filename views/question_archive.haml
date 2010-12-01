@@ -5,15 +5,7 @@
     %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
     %title="Shiny Sriram"
   %body
-    = 'Users:<br />'
-    - @users.each do |user|
-      = user.username
-      = ' - '
-      = user.firstname
-      = ' - '
-      = user.lastname
-      = ' - '
-      %a{:href=>'user/'+user.id.to_s}
-        = user.dob
-            
-      %br
+    = 'All Questions:<br />'
+    - @questions.each do |question|
+      %a{:href=>'question/'+question.id.to_s}
+        = question.body.to_s

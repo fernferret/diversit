@@ -3,17 +3,9 @@
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'content="text/html; charset=utf-8;'}
     %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
-    %title="Shiny Sriram"
+    %title="Add a Question"
   %body
-    = 'Users:<br />'
-    - @users.each do |user|
-      = user.username
-      = ' - '
-      = user.firstname
-      = ' - '
-      = user.lastname
-      = ' - '
-      %a{:href=>'user/'+user.id.to_s}
-        = user.dob
-            
-      %br
+    = 'Add a Question:<br />'
+    %form{:action=>'/addquestion', :method=>'POST'}
+      %input{:type=>'text', :name=>'question'}
+      %submit

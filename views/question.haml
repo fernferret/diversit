@@ -5,15 +5,9 @@
     %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
     %title="Shiny Sriram"
   %body
-    = 'Users:<br />'
-    - @users.each do |user|
-      = user.username
-      = ' - '
-      = user.firstname
-      = ' - '
-      = user.lastname
-      = ' - '
-      %a{:href=>'user/'+user.id.to_s}
-        = user.dob
-            
-      %br
+    = 'Question of the Day is:'
+    %b
+      = @question
+    %form{:action=>'/submitanswer' :method=>'POST'}
+      %input{:type=>'text' :name=>'answer'}
+      %submit
