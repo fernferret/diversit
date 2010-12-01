@@ -1,0 +1,21 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'content="text/html; charset=utf-8;'}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
+    %title="Register for DiversIT"
+  %body
+    %form{:action => '/register', :method => 'POST'}
+      = 'Enter your Email Address: '
+      %input{:type => 'text', :id => 'email', :name => 'email'}
+      %br
+      = 'Type a Password: '
+      %input{:type => 'text', :id => 'password', :name => 'password'}
+      %br
+      = 'Type it again: '
+      %input{:type => 'text', :id => 'pconfirm', :name => 'pconfirm'}
+      %br
+      = 'Your birth date: '
+      %input{:type => 'text', :id => 'bdate', :name => 'bdate'}
+      %br
+      %input{:type => 'submit'}

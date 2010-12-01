@@ -115,3 +115,7 @@ post '/question/:id' do
   Answer.create(:body=>params[:answer], :user=>User.get(1), :question=>@question)
   haml :question
 end
+
+get '/register' do
+  haml :register
+end
