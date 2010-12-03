@@ -5,6 +5,7 @@
     %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
     %title="DiversIT"
   %body
+    - haml :header
     = 'Users:<br />'
     - @users.each do |user|
       = user.username

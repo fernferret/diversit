@@ -75,11 +75,6 @@ get '/questions' do
   haml :question_archive
 end
 
-get '/add/:user/:first/:last/:dob' do
-  User.create(:username=>params[:user],:firstname=>params[:first],:lastname=>params[:last],:dob=>params[:dob])
-  redirect '/'
-end
-
 get '/addquestion' do
   haml :question_add
 end
@@ -119,3 +114,39 @@ end
 get '/register' do
   haml :register
 end
+
+post '/register' do
+  if params['email'] != '' and params['password'] != '' and params['password'] == params['pconfirm'] and params['bdate'] != ''
+    User.create(:username => params['email'], :password => params['password'], :dob => params['bdate'])
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
