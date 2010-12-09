@@ -54,6 +54,18 @@ end
 
 class Comment < Response
   belongs_to :response
+  
+  has n, :subcommentings, :child_key => [ :source_id ]
+  has n, :subcomments, self, :through => :subcommentings, :via => :target
+end
+
+class Subcommenting
+  include DataMapper::Resource
+  property :source_id, Integer, :key => true, :min => 1
+  property :target_id, Integer, :key => true, :min => 1
+  
+  belongs_to :source, 'Comment', :key => true
+  belongs_to :target, 'Comment', :key => true
 end
 
 DataMapper.finalize
