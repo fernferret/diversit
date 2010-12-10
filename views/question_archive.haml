@@ -2,14 +2,16 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'content="text/html; charset=utf-8;'}
-    %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "css/style.css"}
     %title="Shiny Sriram"
   %body
     = 'All Questions:<br />'
     - @questions.each do |question|
-      %a{:href=>'question/'+question.id.to_s}
-        = question.body.to_s
-        %br
+      .questionmini
+        %a{:href=>'question/'+question.id.to_s}
+          = question.body.to_s
+          %br
+          = "&nbsp;&nbsp;&nbsp;&nbsp;"+question.forday.to_s
     %br
     %br
     %a{:href=>'addquestion'}

@@ -2,26 +2,30 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'content="text/html; charset=utf-8;'}
-    %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "/css/style.css"}
     %title="Register for DiversIT"
   %body
-    %form{:action => '/register', :method => 'POST'}
-      = 'Enter your Email Address: '
-      %input{:type => 'text', :id => 'email', :name => 'email'}
-      %br
-      = 'What\'s your first name?: '
-      %input{:type => 'text', :id => 'first', :name => 'first'}
-      %br
-      = 'What\'s your last name?'
-      %input{:type => 'text', :id => 'last', :name => 'last'}
-      %br
-      = 'Type a Password: '
-      %input{:type => 'password', :id => 'password', :name => 'password'}
-      %br
-      = 'Type it again: '
-      %input{:type => 'password', :id => 'pconfirm', :name => 'pconfirm'}
-      %br
-      = 'Your birth date: '
-      %input{:type => 'text', :id => 'bdate', :name => 'bdate'}
-      %br
-      %input{:type => 'submit'}
+    = haml :header
+    .container{:id => 'register'}
+      %form{:action => '/register', :method => 'POST'}
+        .row
+          = 'Enter your Email Address: '
+          %input{:type => 'text', :id => 'email', :name => 'email'}
+        .row
+          = 'What\'s your first name?: '
+          %input{:type => 'text', :id => 'first', :name => 'first'}
+        .row
+          = 'What\'s your last name?'
+          %input{:type => 'text', :id => 'last', :name => 'last'}
+        .row
+          = 'Type a Password: '
+          %input{:type => 'password', :id => 'password', :name => 'password'}
+        .row
+          = 'Type it again: '
+          %input{:type => 'password', :id => 'pconfirm', :name => 'pconfirm'}
+        .row
+          = 'Your birth date: '
+          %input{:type => 'text', :id => 'bdate', :name => 'bdate'}
+        .row
+          %input{:type => 'submit'}
+    = haml :footer

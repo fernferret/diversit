@@ -95,9 +95,6 @@ post '/login' do
   if session[:user] = User.auth(params["email"], params["password"])
     #flash("Login successful")
     redirect '/'
-  else
-    #flash("Login failed - Try again")
-    redirect '/login'
   end
 end
 
@@ -105,4 +102,9 @@ get '/logout' do
   session[:user] = nil
   flash("Logout successful")
   redirect '/'
+end
+
+get '/style.css' do
+  content_type 'text/css', :charset => 'utf-8'
+  sass :style
 end

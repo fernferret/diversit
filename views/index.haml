@@ -2,24 +2,20 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'content="text/html; charset=utf-8;'}
-    %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "css/style.css"}
     %title="DiversIT"
   %body
     = haml :header
     - if @question
       .question
         = @question.body
-    - if @u
       .answerbox
-        %form{:action => '/register', :method => 'POST'}
-    = 'Users:<br />'
-    - @users.each do |user|
-      = user.username
-      = ' - '
-      = user.firstname
-      = ' - '
-      = user.lastname
-      = ' - '
-      %a{:href=>'user/'+user.id.to_s}
-        = user.dob
+      - if @u
+        %form{:action => '/question/'+@question.id.to_s, :method => 'POST'}
+          %input{:type => 'text', :name => 'answer'}
+          %input{:type => 'submit', :value => 'Answer!'}
+      - else
+        .menulink.container{:id => 'answernow'}
+          %a{:href => '/register'}
+            = 'Answer Now!'
     = haml :footer

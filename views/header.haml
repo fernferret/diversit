@@ -1,12 +1,26 @@
 .header
   .title
-    = "diversiT"
+    %a{:href => '/'}
+      = "diversiT"
   .loginBox
-    %form{:action => '/login', :method => 'POST'}
-      = 'email: '
-      %input{:type => 'text', :id => 'email', :name => 'email'}
+    - if !logged_in?
+      %form{:action => '/login', :method => 'POST'}
+        .row
+          %span{:class => 'label'}
+            = 'email: '
+          %span{:class => 'formw'}
+            %input{:type => 'text', :id => 'email', :name => 'email', :size => '20'}
+        .row
+          %span{:class => 'label'}
+            = 'password: '
+          %span{:class => 'formw'}
+            %input{:type => 'password', :id => 'password', :name => 'password', :size => '20'}
+        .row
+          %input{:type => 'submit', :text => 'Login'}
+    - else
+      = "Welcome "+logged_in.firstname + " " + logged_in.lastname
       %br
-      = 'password: '
-      %input{:type => 'text', :id => 'password', :name => 'password'}
-      %br
-      %input{:type => 'submit', :text => 'Login'}
+      %a{:href => '/logout'}
+        = 'Logout'
+  .menu
+    = 'Menu'

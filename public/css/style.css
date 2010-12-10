@@ -1,0 +1,111 @@
+body {
+  background-image:url('http://jqueryui.com/themeroller/images/?new=000000&w=10&h=10&f=png&q=100&fltr[]=over|textures/16_diagonal_maze.png|0|0|25');
+  background-repeat:repeat;
+  color:#a0a0a0;
+  font-family:verdana,sans-serif;
+  font-size:100%;
+  text-shadow: 0px 0px 1px #404040;
+}
+
+h1, h2, h3 {
+}
+
+a {
+  color:#ffffff;
+  text-shadow: 0px 0px 5px #202020;
+  text-decoration:none;
+}
+
+#title { font-size:5.0em; }
+#subtitle { font-size:1.5em; }
+
+.header {
+  font-weight:normal;
+  text-align:center;
+}
+
+div.container {
+  /* rounded corners */
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px;
+  
+  /* shadow */
+  -moz-box-shadow:0px 0px 10px #4FB34F;
+  -webkit-box-shadow:0px 0px 10px #4FB34F;
+  box-shadow:0px 0px 10px #4FB34F;
+
+  /* container background gradient - needs webkit implementation */
+  background:-moz-linear-gradient(top, #4FB34F, #319331);
+  background: -webkit-gradient(linear,
+                  left top, left bottom, from(#4FB34F), to(#319331));
+  
+  padding:15px;
+
+  margin-left:auto;
+  margin-right:auto;
+  
+  color:#202020;
+  text-align:center;
+}
+
+div#welcome { width:300px; }
+div#answernow { width:200px;}
+div#register { width:400px; }
+div#login { width:400px; }
+div#question { width:700px; }
+div.loginBox {
+  float:right;
+  padding-right:10px;
+  width:300px;
+}
+div.title {
+  float:left;
+}
+div.menu {
+  clear:both;
+}
+/* table-less forms */
+div.row {
+  clear:both;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+
+div.row span.label {
+  float:left;
+  width:30%;
+  text-align:right;
+}
+
+div.row span.formw {
+  float:right;
+  width:65%;
+  text-align:left;
+}
+
+input {
+  background:#70C670;
+  border:1px solid #202020;
+  font-family:verdana,sans-serif;
+}
+
+div.questiontext {
+  font-size:1.5em;
+  font-weight:bold;
+}
+
+div.questiontimestamp {
+  font-size:0.7em;
+  font-weight:bold;
+}
+
+.question {
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+  font-size:40px;
+  font-weight:bold;
+  color:#18CC45;
+  text-shadow: rgba(255,255,255,0.3) 1px 1px 1px;
+}

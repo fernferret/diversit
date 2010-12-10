@@ -2,7 +2,7 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'content="text/html; charset=utf-8;'}
-    %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "/css/style.css"}
     %title="Shiny Sriram"
   %body
     = haml :header
@@ -14,7 +14,7 @@
       - if logged_in?
         %form{:action=>'/question/'+@question.id.to_s, :method=>'POST'}
           %input{:type=>'text', :name=>'answer'}
-          %input{:type=>'submit'}
+          %input{:type=>'submit', :value => 'Answer this question!'}
         %br
       %br
       - @question.answer.each do |answer|
