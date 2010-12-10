@@ -25,7 +25,8 @@ class User
   property :lastname,   String
   property :dob,        Date
   
-  has n, :response
+  has n, :answer
+  has n, :comment
 end
 
 class Question
@@ -34,39 +35,32 @@ class Question
   property :body,       String
   property :type,       String
   property :timestamp,  DateTime
-  has n, :response
+  has n, :answer
 end
 
 # Our Sleep Deprived version of an interface
 
-class Response
+class Answer
   include DataMapper::Resource
   property :id,         Serial
   property :body,       Text
   
   belongs_to :user
+  belongs_to :question
   has n, :comment
 end
 
-class Answer < Response
-  belongs_to :question
-end
-
-class Comment < Response
-  belongs_to :response
-  
-  has n, :subcommentings, :child_key => [ :source_id ]
-  has n, :subcomments, self, :through => :subcommentings, :via => :target
-end
-
-class Subcommenting
+class Comment
   include DataMapper::Resource
-  property :source_id, Integer, :key => true, :min => 1
-  property :target_id, Integer, :key => true, :min => 1
+  property :id,         Serial
+  property :body,       Text
   
-  belongs_to :source, 'Comment', :key => true
-  belongs_to :target, 'Comment', :key => true
+  belongs_to :user
+  belongs_to :answer
+  
+  #has n, :comment
 end
+
 
 DataMapper.finalize
 DataMapper.auto_upgrade!
@@ -123,7 +117,8 @@ get '/register' do
 end
 
 post '/register' do
-  if params['email'] != '' and params['password'] != '' and params['password'] == params['pconfirm'] and params['bdate'] != ''
+  if params['email'] != '' and params['password'] != '' and params['password'] == params['pconfirm'] and params['bdate'] != '' 
     User.create(:username => params['email'], :password => params['password'], :dob => params['bdate'])
+    redirect '/'
   end
 end
