@@ -6,5 +6,7 @@ class Question
   property :body,       String
   property :type,       String
   property :timestamp,  DateTime
+  property :forday,     Date
+  
   has n, :answer
 end

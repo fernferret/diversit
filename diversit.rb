@@ -12,6 +12,7 @@ enable :sessions
 ## PATHS
 
 get '/' do
+  @question = Question.first(:forday => Date.today)
   @u = session[:user]
   @users = User.all :order=>[:username]
   haml :index
@@ -32,17 +33,24 @@ post '/addquestion' do
 end
 
 get '/addcomment/:type/:id' do
-  haml :comment_add
+  if logged_in?
+    haml :comment_add
+  else
+    redirect '/register'
+  end
 end
 
 post '/addcomment/:type/:id' do
-  
-  if params[:type] == 'answer'
-    ans = Answer.get(params[:id])
-    @comment = Comment.create(:body=>params[:comment], :user=>User.get(2), :answer=>ans)
-    redirect '/question/'+ans.question.id.to_s
-  else
+  if logged_in?
+    if params[:type] == 'answer'
+      ans = Answer.get(params[:id])
+      @comment = Comment.create(:body=>params[:comment], :user=>User.get(session[:user].id), :answer=>ans)
+      redirect '/question/'+ans.question.id.to_s
+    else
     
+    end
+  else
+    redirect '/register'
   end
   haml :comment_add
 end
@@ -53,9 +61,13 @@ get '/question/:id' do
 end
 
 post '/question/:id' do
-  @question = Question.get(params[:id])
-  Answer.create(:body=>params[:answer], :user=>User.get(2), :question=>@question)
-  haml :question
+  if logged_in?
+    @question = Question.get(params[:id])
+    Answer.create(:body=>params[:answer], :user=>User.get(session[:user].id), :question=>@question)
+    haml :question
+  else
+    redirect '/register'
+  end
 end
 
 get '/register' do

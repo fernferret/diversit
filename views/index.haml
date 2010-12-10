@@ -6,6 +6,9 @@
     %title="DiversIT"
   %body
     = haml :header
+    - if @question
+      .question
+        = @question.body
     = 'Users:<br />'
     - @users.each do |user|
       = user.username
