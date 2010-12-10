@@ -30,4 +30,11 @@ helpers do
       "<fieldset><legend>Notice</legend><p>#{tmp}</p></fieldset>"
     end
   end
+  
+  def protected!
+    unless session[:user]
+      redirect '/login'
+    end
+  end
+  
 end

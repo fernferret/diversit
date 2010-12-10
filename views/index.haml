@@ -5,7 +5,7 @@
     %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
     %title="DiversIT"
   %body
-    - haml :header
+    = haml :header
     = 'Users:<br />'
     - @users.each do |user|
       = user.username
@@ -18,3 +18,4 @@
         = user.dob
             
       %br
+    = haml :footer

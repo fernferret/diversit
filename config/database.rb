@@ -8,6 +8,6 @@ require 'models/Answer'
 require 'logger'
 
 DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup(:default, "sqlite:///#{Dir.pwd}/diversit.sqlite")
+DataMapper.setup(:default, "sqlite:///#{Dir.pwd}/diversitg.sqlite")
 DataMapper.finalize
 DataMapper.auto_upgrade!

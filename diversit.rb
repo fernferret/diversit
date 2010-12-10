@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'config/database'
 require 'helpers/sinatra'
+require 'haml'
 
 enable :sessions
 
@@ -11,9 +12,8 @@ enable :sessions
 ## PATHS
 
 get '/' do
-  puts $auth
+  @u = session[:user]
   @users = User.all :order=>[:username]
-  
   haml :index
 end
 
@@ -64,26 +64,32 @@ end
 
 post '/register' do
   if params['email'] != '' and params['password'] != '' and params['password'] == params['pconfirm'] and params['bdate'] != '' and params['first'] != '' and params['last'] != ''
-    User.create(:username => params['email'], :password => params['password'], :dob => params['bdate'], :firstname => params['first'], :lastname => params['last'])
+    u = User.new
+    u.username = params['email']
+    u.password = params['password']
+    u.dob = params['bdate']
+    u.firstname = params['first']
+    u.lastname = params['last']
+    u.save
     redirect '/'
   end
 end
 
-get '/user/login' do
+get '/login' do
   haml :login
 end
 
-post '/user/login' do
-  if session[:user] = User.authenticate(params["login"], params["password"])
-    flash("Login successful")
+post '/login' do
+  if session[:user] = User.auth(params["email"], params["password"])
+    #flash("Login successful")
     redirect '/'
   else
-    flash("Login failed - Try again")
-    redirect '/user/login'
+    #flash("Login failed - Try again")
+    redirect '/login'
   end
 end
 
-get '/user/logout' do
+get '/logout' do
   session[:user] = nil
   flash("Logout successful")
   redirect '/'
