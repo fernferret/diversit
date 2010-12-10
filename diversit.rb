@@ -1,73 +1,19 @@
 require 'rubygems'
 require 'sinatra'
-require 'haml'
-require 'sass'
-require 'dm-core'
-require 'dm-validations'
-require 'dm-migrations'
-require 'digest/md5'
-require 'yaml'
-require 'logger'
+require 'config/database'
+require 'helpers/sinatra'
 
-## CONFIGURATION
+enable :sessions
 
-config = YAML::load_file("config.yml")
-DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup(:default, config['db_location'])
+# App modeled after:
+# https://github.com/daddz/sinatra-dm-login/
 
-## MODELS
-class User
-  include DataMapper::Resource
-  property :id,         Serial
-  property :username,   String
-  property :password,   String
-  property :firstname,  String
-  property :lastname,   String
-  property :dob,        Date
-  
-  has n, :answer
-  has n, :comment
-end
-
-class Question
-  include DataMapper::Resource
-  property :id,         Serial
-  property :body,       String
-  property :type,       String
-  property :timestamp,  DateTime
-  has n, :answer
-end
-
-# Our Sleep Deprived version of an interface
-
-class Answer
-  include DataMapper::Resource
-  property :id,         Serial
-  property :body,       Text
-  
-  belongs_to :user
-  belongs_to :question
-  has n, :comment
-end
-
-class Comment
-  include DataMapper::Resource
-  property :id,         Serial
-  property :body,       Text
-  
-  belongs_to :user
-  belongs_to :answer
-  
-  #has n, :comment
-end
-
-
-DataMapper.finalize
-DataMapper.auto_upgrade!
 ## PATHS
 
 get '/' do
+  puts $auth
   @users = User.all :order=>[:username]
+  
   haml :index
 end
 
@@ -121,4 +67,24 @@ post '/register' do
     User.create(:username => params['email'], :password => params['password'], :dob => params['bdate'], :firstname => params['first'], :lastname => params['last'])
     redirect '/'
   end
+end
+
+get '/user/login' do
+  haml :login
+end
+
+post '/user/login' do
+  if session[:user] = User.authenticate(params["login"], params["password"])
+    flash("Login successful")
+    redirect '/'
+  else
+    flash("Login failed - Try again")
+    redirect '/user/login'
+  end
+end
+
+get '/user/logout' do
+  session[:user] = nil
+  flash("Logout successful")
+  redirect '/'
 end
