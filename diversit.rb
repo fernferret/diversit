@@ -25,8 +25,7 @@ class User
   property :lastname,   String
   property :dob,        Date
   
-  has n, :answer
-  has n, :comment
+  has n, :response
 end
 
 class Question
@@ -35,30 +34,38 @@ class Question
   property :body,       String
   property :type,       String
   property :timestamp,  DateTime
-  has n, :answer
+  has n, :response
 end
 
-# Our Sleep Deprived version, fix with inheritance
+# Our Sleep Deprived version of an interface
 
-class Answer
+class Response
   include DataMapper::Resource
   property :id,         Serial
   property :body,       Text
   
   belongs_to :user
-  belongs_to :question
   has n, :comment
 end
 
-class Comment
+class Answer < Response
+  belongs_to :question
+end
+
+class Comment < Response
+  belongs_to :response
+  
+  has n, :subcommentings, :child_key => [ :source_id ]
+  has n, :subcomments, self, :through => :subcommentings, :via => :target
+end
+
+class Subcommenting
   include DataMapper::Resource
-  property :id,         Serial
-  property :body,       Text
+  property :source_id, Integer, :key => true, :min => 1
+  property :target_id, Integer, :key => true, :min => 1
   
-  belongs_to :user
-  belongs_to :answer
-  
-  #has n, :comment
+  belongs_to :source, 'Comment', :key => true
+  belongs_to :target, 'Comment', :key => true
 end
 
 DataMapper.finalize
@@ -120,33 +127,3 @@ post '/register' do
     User.create(:username => params['email'], :password => params['password'], :dob => params['bdate'])
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
