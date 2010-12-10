@@ -5,6 +5,7 @@
     %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
     %title="Shiny Sriram"
   %body
+    = haml :header
     - if @question == nil
       = 'Sorry, Question not found.'
     - else
@@ -14,17 +15,21 @@
         %form{:action=>'/question/'+@question.id.to_s, :method=>'POST'}
           %input{:type=>'text', :name=>'answer'}
           %input{:type=>'submit'}
-      %br
+        %br
       %br
       - @question.answer.each do |answer|
-        = '-'
-        %a{:href=>'/addcomment/answer/'+answer.id.to_s}
-          = answer.body
-        %br
-        - answer.comment.each do |com|
-          = '--'
-          = com.body
-          %br
-        %br
+        .answer
+          = '-'
+          - if logged_in?
+            %a{:href=>'/addcomment/answer/'+answer.id.to_s}
+              = answer.body
+          - else
+            = answer.body
+          .comments
+            - answer.comment.each do |com|
+              .comment
+                = '--'
+                = com.body
       %a{:href=>'/questions'}
         = 'View all questions'
+    = haml :footer

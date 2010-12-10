@@ -9,6 +9,9 @@
     - if @question
       .question
         = @question.body
+    - if @u
+      .answerbox
+        %form{:action => '/register', :method => 'POST'}
     = 'Users:<br />'
     - @users.each do |user|
       = user.username
@@ -19,6 +22,4 @@
       = ' - '
       %a{:href=>'user/'+user.id.to_s}
         = user.dob
-            
-      %br
     = haml :footer

@@ -3,7 +3,7 @@ helpers do
     return true if session[:user]
     nil
   end
-
+  
   def link_to(name, location, alternative = false)
     if alternative and alternative[:condition]
       "<a href=#{alternative[:location]}>#{alternative[:name]}</a>"
