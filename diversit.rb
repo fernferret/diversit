@@ -93,7 +93,7 @@ post '/addcomment/:type/:id' do
   
   if params[:type] == 'answer'
     ans = Answer.get(params[:id])
-    @comment = Comment.create(:body=>params[:comment], :user=>User.get(1), :answer=>ans)
+    @comment = Comment.create(:body=>params[:comment], :user=>User.get(2), :answer=>ans)
     redirect '/question/'+ans.question.id.to_s
   else
     
@@ -108,7 +108,7 @@ end
 
 post '/question/:id' do
   @question = Question.get(params[:id])
-  Answer.create(:body=>params[:answer], :user=>User.get(1), :question=>@question)
+  Answer.create(:body=>params[:answer], :user=>User.get(2), :question=>@question)
   haml :question
 end
 
