@@ -117,8 +117,8 @@ get '/register' do
 end
 
 post '/register' do
-  if params['email'] != '' and params['password'] != '' and params['password'] == params['pconfirm'] and params['bdate'] != '' 
-    User.create(:username => params['email'], :password => params['password'], :dob => params['bdate'])
+  if params['email'] != '' and params['password'] != '' and params['password'] == params['pconfirm'] and params['bdate'] != '' and params['first'] != '' and params['last'] != ''
+    User.create(:username => params['email'], :password => params['password'], :dob => params['bdate'], :firstname => params['first'], :lastname => params['last'])
     redirect '/'
   end
 end
