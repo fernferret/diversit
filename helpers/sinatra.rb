@@ -45,10 +45,25 @@ helpers do
     tree = ""
     tree += "<ul>"
     tree += "<li>"
-    tree += "<a href=\"/addcomment/"+root.question.id.to_s+"/"+root.id.to_s+"\">"+root.body+"</a>"
+    tree += '<a href="/addcomment/'+root.question.id.to_s+'/'+root.id.to_s+'">'+root.body+'</a>'
     unless root.children.nil?
       root.children.each do |child|
         tree += showTree child
+      end
+    end
+    tree += "</li>"
+    tree += "</ul>"
+    return tree
+  end
+  
+  def showTreeNoLink root
+    tree = ""
+    tree += "<ul>"
+    tree += "<li>"
+    tree += root.body
+    unless root.children.nil?
+      root.children.each do |child|
+        tree += showTreeNoLink child
       end
     end
     tree += "</li>"

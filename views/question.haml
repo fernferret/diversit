@@ -6,7 +6,6 @@
     %title="Shiny Sriram"
   %body
     = haml :header
-    = haml :debug
     - if @question == nil
       = 'Sorry, Question not found.'
     - else
@@ -18,18 +17,12 @@
           %input{:type=>'submit', :value => 'Answer this question!'}
         %br
       %br
-      / - @answers.each do |answer|
-      /   .response
-      /     = '-'
-      /     - if logged_in?
-      /       %a{:href=>'/addcomment/'+@question.id.to_s+'/'+answer.id.to_s}
-      /         = answer.body
-      /         
-      /     - else
-      /       = answer.body
       - @answers.each do |answer|
         .response
-          = showTree answer
+          - if logged_in?
+            = showTree answer
+          - else
+            = showTreeNoLink answer
       %a{:href=>'/questions'}
         = 'View all questions'
     = haml :footer
