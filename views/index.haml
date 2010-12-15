@@ -13,7 +13,7 @@
         - if @u
           .answerarea
             %form{:action => '/question/'+@question.id.to_s, :method => 'POST'}
-              %input{:type => 'text', :name => 'answer'}
+              %input{:type => 'text', :name => 'response'}
               %input{:type => 'submit', :value => 'Answer!'}
         - else
           .menulink.container{:id => 'answernow'}
