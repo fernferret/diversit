@@ -109,3 +109,7 @@ div.questiontimestamp {
   color:#18CC45;
   text-shadow: rgba(255,255,255,0.3) 1px 1px 1px;
 }
+
+.debug {
+  background-color:#FF0000;
+}

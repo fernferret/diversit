@@ -6,8 +6,8 @@
     %title="Add a Comment"
   %body
     = 'Add a Comment:<br />'
-    %form{:action=>'/addcomment/'+params[:type]+'/'+params[:id], :method=>'POST'}
+    %form{:action=>'/addcomment/'+params[:pid]+'/'+params[:rid], :method=>'POST'}
       %input{:type=>'text', :name=>'comment'}
       %input{:type=>'submit'}
-    - if @comment != nil
-      = @comment.body
+    / - if @comment != nil
+    /   = @comment.body

@@ -9,5 +9,5 @@ class Response
   
   belongs_to :user
   belongs_to :question
-  is :tree, :order => :id
+  is :tree, :order => :timestamp
 end

@@ -32,7 +32,7 @@ post '/addquestion' do
   haml :question_success
 end
 
-get '/addcomment/:type/:id' do
+get '/addcomment/:qid/:rid' do
   if logged_in?
     haml :comment_add
   else
@@ -40,15 +40,13 @@ get '/addcomment/:type/:id' do
   end
 end
 
-post '/addcomment/:type/:id' do
+post '/addcomment/:qid/:rid' do
   if logged_in?
-    if params[:type] == 'answer'
-      ans = Answer.get(params[:id])
-      @comment = Comment.create(:body=>params[:comment], :user=>User.get(session[:user].id), :answer=>ans)
-      redirect '/question/'+ans.question.id.to_s
-    else
-    
-    end
+    parent = Response.get(params[:rid])
+    question = Question.get(params[:qid])
+    parent.children.create(:body=>params[:comment], :user=>User.get(session[:user].id), :timestamp=>Time.now, :question=>question)
+    # @comment = Comment.create(:body=>params[:comment], :user=>User.get(session[:user].id), :answer=>ans)
+    redirect '/question/'+question.id.to_s
   else
     redirect '/register'
   end
@@ -63,7 +61,10 @@ end
 post '/question/:id' do
   if logged_in?
     @question = Question.get(params[:id])
-    root = Response.create(:body=>params[:response], :user=>User.get(session[:user].id), :question=>@question)
+    @body = params[:response]
+    @user = User.get(session[:user].id)
+    @timestamp = Time.now
+    Response.create(:body=>params[:response], :user=>User.get(session[:user].id), :timestamp=>Time.now, :question=>@question)
     haml :question
   else
     redirect '/register'

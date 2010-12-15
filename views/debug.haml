@@ -1,0 +1,9 @@
+.debug
+  - if @user
+    = @user.username
+  - if @timestamp
+    = @timestamp.to_s
+  - if @question
+    = @question.body
+  - if @body
+    = @body
