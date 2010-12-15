@@ -15,7 +15,7 @@
     - else
       %b
         = @question.body
-      - if logged_in?
+      - if logged_in? and @question.forday == Date.today
         %form{:action=>'/question/'+@question.id.to_s, :method=>'POST'}
           %input{:type=>'text', :name=>'response'}
           %input{:type=>'submit', :value => 'Answer this question!'}
@@ -23,7 +23,7 @@
       %br
       - @answers.each do |answer|
         .response
-          - if logged_in?
+          - if logged_in? and @question.forday == Date.today
             = showTree answer
           - else
             = showTreeNoLink answer

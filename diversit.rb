@@ -19,7 +19,7 @@ get '/' do
 end
 
 get '/questions' do
-  @questions = Question.all(:order => :forday.desc)
+  @questions = Question.all(:forday.lt => Date.today, :order => :forday.desc)
   haml :question_archive
 end
 
@@ -44,7 +44,7 @@ post '/addcomment/:qid/:rid' do
   if logged_in?
     parent = Response.get(params[:rid])
     question = Question.get(params[:qid])
-    if params[:comment].to_s.length > 0
+    if params[:comment].to_s.length > 0 and question.forday == Date.today
       parent.children.create(:body=>params[:comment], :user=>User.get(session[:user].id), :timestamp=>Time.now, :question=>question)
     end
     # @comment = Comment.create(:body=>params[:comment], :user=>User.get(session[:user].id), :answer=>ans)
@@ -69,7 +69,7 @@ post '/question/:id' do
     @body = params[:response]
     @user = User.get(session[:user].id)
     @timestamp = Time.now
-    if params[:response].to_s.length > 0
+    if params[:response].to_s.length > 0 and @question.forday == Date.today
       Response.create(:body=>params[:response], :user=>User.get(session[:user].id), :timestamp=>Time.now, :question=>@question)
     end
     haml :question

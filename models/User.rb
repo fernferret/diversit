@@ -8,7 +8,7 @@ class User
   property :password_encrypted,   String
   property :firstname,  String
   property :lastname,   String
-  property :dob,        Date,   :default => DateTime.now
+  property :dob,        Date
   
   has n, :response
   
@@ -31,4 +31,9 @@ class User
     puts User.encrypt(pass, "iUT 78%$ 87T09u ()*6t &r76v^76%c87^Vb&(*N8)")
     nil
   end
+  
+  def age
+    return (Date.today - self.dob).to_i/365
+  end
+  
 end
