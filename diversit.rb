@@ -44,7 +44,9 @@ post '/addcomment/:qid/:rid' do
   if logged_in?
     parent = Response.get(params[:rid])
     question = Question.get(params[:qid])
-    parent.children.create(:body=>params[:comment], :user=>User.get(session[:user].id), :timestamp=>Time.now, :question=>question)
+    if params[:comment].to_s.length > 0
+      parent.children.create(:body=>params[:comment], :user=>User.get(session[:user].id), :timestamp=>Time.now, :question=>question)
+    end
     # @comment = Comment.create(:body=>params[:comment], :user=>User.get(session[:user].id), :answer=>ans)
     redirect '/question/'+question.id.to_s
   else
@@ -66,7 +68,9 @@ post '/question/:id' do
     @body = params[:response]
     @user = User.get(session[:user].id)
     @timestamp = Time.now
-    Response.create(:body=>params[:response], :user=>User.get(session[:user].id), :timestamp=>Time.now, :question=>@question)
+    if params[:response].to_s.length > 0
+      Response.create(:body=>params[:response], :user=>User.get(session[:user].id), :timestamp=>Time.now, :question=>@question)
+    end
     haml :question
   else
     redirect '/register'
