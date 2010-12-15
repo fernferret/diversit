@@ -13,23 +13,18 @@
         = @question.body
       - if logged_in?
         %form{:action=>'/question/'+@question.id.to_s, :method=>'POST'}
-          %input{:type=>'text', :name=>'answer'}
+          %input{:type=>'text', :name=>'response'}
           %input{:type=>'submit', :value => 'Answer this question!'}
         %br
       %br
-      - @question.answer.each do |answer|
-        .answer
+      - @question.response.each do |response|
+        .response
           = '-'
           - if logged_in?
-            %a{:href=>'/addcomment/answer/'+answer.id.to_s}
-              = answer.body
+            %a{:href=>'/addcomment/response/'+response.id.to_s}
+              = response.body
           - else
-            = answer.body
-          .comments
-            - answer.comment.each do |com|
-              .comment
-                = '--'
-                = com.body
+            = response.body
       %a{:href=>'/questions'}
         = 'View all questions'
     = haml :footer

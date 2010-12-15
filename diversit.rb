@@ -63,7 +63,7 @@ end
 post '/question/:id' do
   if logged_in?
     @question = Question.get(params[:id])
-    Answer.create(:body=>params[:answer], :user=>User.get(session[:user].id), :question=>@question)
+    root = Response.create(:body=>params[:response], :user=>User.get(session[:user].id), :question=>@question)
     haml :question
   else
     redirect '/register'

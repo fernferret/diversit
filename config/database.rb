@@ -1,10 +1,10 @@
 require 'rubygems'
 require 'dm-core'
 require 'dm-migrations'
+require 'dm-is-tree'
 require 'models/User'
-require 'models/Comment'
 require 'models/Question'
-require 'models/Answer'
+require 'models/Response'
 require 'logger'
 
 DataMapper::Logger.new($stdout, :debug)

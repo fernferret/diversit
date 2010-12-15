@@ -10,8 +10,7 @@ class User
   property :lastname,   String
   property :dob,        Date,   :default => DateTime.now
   
-  has n, :answer
-  has n, :comment
+  has n, :response
   
   ## Portions of this code from:
   ## https://github.com/daddz/sinatra-dm-login/

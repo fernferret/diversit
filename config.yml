@@ -1,1 +1,1 @@
-db_location: 'sqlite:///Users/ericstokes/Ruby/diversit.sqlite'
+db_location: 'sqlite:///home/kennygao/sinatra/diversit/diversit.sqlite'

@@ -8,5 +8,5 @@ class Question
   property :timestamp,  DateTime
   property :forday,     Date
   
-  has n, :answer
+  has n, :response
 end
