@@ -55,6 +55,7 @@ end
 
 get '/question/:id' do
   @question = Question.get(params[:id])
+  @answers = @question.response.all(:parent_id => nil)
   haml :question
 end
 

@@ -41,4 +41,15 @@ helpers do
     end
   end
   
+  def showTree(root, tree)
+    tree += "<ul>"
+    tree += "<li>"
+    tree += root.body
+    tree += "</li>"
+    tree += "</ul>"
+    #if root.children.nil?
+      return tree
+    #end
+  end
+  
 end

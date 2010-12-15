@@ -18,14 +18,18 @@
           %input{:type=>'submit', :value => 'Answer this question!'}
         %br
       %br
-      - @question.response.each do |response|
+      - @answers.each do |answer|
         .response
           = '-'
           - if logged_in?
-            %a{:href=>'/addcomment/response/'+response.id.to_s}
-              = response.body
+            %a{:href=>'/addcomment/'+@question.id.to_s+'/'+answer.id.to_s}
+              = answer.body
+              
           - else
-            = response.body
+            = answer.body
+      - @answers.each do |answer|
+        .response
+          = showTree answer, ''
       %a{:href=>'/questions'}
         = 'View all questions'
     = haml :footer
