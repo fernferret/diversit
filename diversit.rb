@@ -96,10 +96,8 @@ get '/login' do
 end
 
 post '/login' do
-  if session[:user] = User.auth(params["email"], params["password"])
-    #flash("Login successful")
-    redirect '/'
-  end
+  session[:user] = User.auth(params["email"], params["password"])
+  redirect '/'
 end
 
 get '/logout' do

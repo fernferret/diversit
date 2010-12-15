@@ -26,10 +26,13 @@
     %a{:href => '/'}
       = 'Home'
     - if session[:user]
+      = ' | '
       %a{:href => '/profile'}
         = 'My Profile'
     - else
+      = ' | '
       %a{:href => '/register'}
         = 'Register'
-    %a{:href => '/register'}
-      = 'Register'
+    = ' | '
+    %a{:href => '/about'}
+      = 'About'

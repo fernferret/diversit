@@ -122,3 +122,20 @@ div.questiontimestamp {
   padding-left:20px;
   padding-top:20px;
 }
+
+.answerbox {
+  padding-top:30px;
+}
+
+.answerarea {
+  padding:15px;
+
+  margin-left:auto;
+  margin-right:auto;
+  
+  color:#202020;
+  text-align:center;
+}
+.answerarea input{
+  font-size:30px;
+}
