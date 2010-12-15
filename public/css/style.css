@@ -64,6 +64,9 @@ div.title {
 }
 div.menu {
   clear:both;
+  width:100%;
+  text-align:left;
+  margin: 0px 40px;
 }
 /* table-less forms */
 div.row {
@@ -113,4 +116,9 @@ div.questiontimestamp {
 .debug {
   background-color:#FF0000;
 }
-.
+
+.title {
+  font-size:40px;
+  padding-left:20px;
+  padding-top:20px;
+}

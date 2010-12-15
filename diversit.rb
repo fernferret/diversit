@@ -86,6 +86,7 @@ post '/register' do
     u.firstname = params['first']
     u.lastname = params['last']
     u.save
+    session[:user] = User.auth(params["email"], params["password"])
     redirect '/'
   end
 end
