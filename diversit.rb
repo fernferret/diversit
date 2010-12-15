@@ -62,6 +62,7 @@ end
 post '/question/:id' do
   if logged_in?
     @question = Question.get(params[:id])
+    @answers = @question.response.all(:parent_id => nil)
     @body = params[:response]
     @user = User.get(session[:user].id)
     @timestamp = Time.now
