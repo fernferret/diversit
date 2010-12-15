@@ -19,7 +19,7 @@ get '/' do
 end
 
 get '/questions' do
-  @questions = Question.all
+  @questions = Question.all(:order => :forday.desc)
   haml :question_archive
 end
 
@@ -56,8 +56,9 @@ post '/addcomment/:qid/:rid' do
 end
 
 get '/question/:id' do
-  @question = Question.get(params[:id])
-  @answers = @question.response.all(:parent_id => nil)
+  if @question = Question.get(params[:id])
+    @answers = @question.response.all(:parent_id => nil)
+  end
   haml :question
 end
 

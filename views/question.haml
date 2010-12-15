@@ -3,7 +3,11 @@
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'content="text/html; charset=utf-8;'}
     %link{:rel => "stylesheet", :type => "text/css", :href => "/css/style.css"}
-    %title="Shiny Sriram"
+    %title
+      - if @question == nil
+        = 'Sorry, Question not found.'
+      - else
+        = @question.body
   %body
     = haml :header
     - if @question == nil

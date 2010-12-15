@@ -3,8 +3,9 @@
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'content="text/html; charset=utf-8;'}
     %link{:rel => "stylesheet", :type => "text/css", :href => "css/style.css"}
-    %title="Shiny Sriram"
+    %title="All Questions"
   %body
+    = haml :header
     = 'All Questions:<br />'
     - @questions.each do |question|
       .questionmini
@@ -12,6 +13,9 @@
           = question.body.to_s
           %br
           = "&nbsp;&nbsp;&nbsp;&nbsp;"+question.forday.to_s
+          %br
+          %br
+          
     %br
     %br
     %a{:href=>'addquestion'}
