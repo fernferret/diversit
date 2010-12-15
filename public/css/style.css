@@ -1,5 +1,5 @@
 body {
-  background-image:url('http://jqueryui.com/themeroller/images/?new=000000&w=10&h=10&f=png&q=100&fltr[]=over|textures/16_diagonal_maze.png|0|0|25');
+  background-image:url('../images/bg.png');
   background-repeat:repeat;
   color:#a0a0a0;
   font-family:verdana,sans-serif;

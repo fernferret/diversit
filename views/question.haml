@@ -15,6 +15,14 @@
     - else
       %b
         = @question.body
+      .stats
+        = "Average answer age: "
+        %b
+          = @question.averageAge
+        %br
+        = "Average comment age: "
+        %b
+          = @question.commentAge
       - if logged_in? and @question.forday == Date.today
         %form{:action=>'/question/'+@question.id.to_s, :method=>'POST'}
           %input{:type=>'text', :name=>'response'}
