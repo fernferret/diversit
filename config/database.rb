@@ -8,6 +8,10 @@ require 'models/Response'
 require 'logger'
 
 DataMapper::Logger.new($stdout, :debug)
-DataMapper.setup(:default, "sqlite:///#{Dir.pwd}/diversit.sqlite")
+if RUBY_PLATFORM =~ /mac/
+  DataMapper.setup(:default, "sqlite:///#{Dir.pwd}/diversit.sqlite")
+else
+  DataMapper.setup(:default, "sqlite:///#{Dir.pwd}/diversit.sqlite")
+end
 DataMapper.finalize
 #DataMapper.auto_upgrade!
