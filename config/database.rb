@@ -11,7 +11,7 @@ DataMapper::Logger.new($stdout, :debug)
 if RUBY_PLATFORM =~ /mac/
   DataMapper.setup(:default, "sqlite:///#{Dir.pwd}/diversit.sqlite")
 else
-  DataMapper.setup(:default, "sqlite:///#{Dir.pwd}/diversit.sqlite")
+  DataMapper.setup(:default, "sqlite://#{Dir.pwd}/diversit.sqlite")
 end
 DataMapper.finalize
-#DataMapper.auto_upgrade!
+DataMapper.auto_upgrade!
