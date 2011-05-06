@@ -15,23 +15,23 @@ enable :sessions
 ## PATHS
 
 get '/' do
-  @question = Question.first(:forday => Date.today)
+  @question = Question.first(:forday => Date.today) # display question of the day
   @u = session[:user]
   @users = User.all(:order => :username)
   haml :index
 end
 
 get '/questions' do
-  @questions = Question.all(:forday.lt => Date.today, :order => :forday.desc)
+  @questions = Question.all(:forday.lt => Date.today, :order => :forday.desc) # list all past questions in desc. order
   haml :question_archive
 end
 
 get '/addquestion' do
-  haml :question_add
+  haml :question_add            # TODO: implement stylesheet
 end
 
 post '/addquestion' do
-  @question = Question.create(:body=>params[:question], :type=>'free', :timestamp=>Time.now, :forday => Date.today)
+  @question = Question.create(:body => params[:question], :type => 'free', :timestamp => Time.now, :forday => Date.today)
   haml :question_success
 end
 
@@ -47,11 +47,12 @@ post '/addcomment/:qid/:rid' do
   if logged_in?
     parent = Response.get(params[:rid])
     question = Question.get(params[:qid])
+
     if params[:comment].to_s.length > 0 and question.forday == Date.today
-      parent.children.create(:body=>params[:comment], :user=>User.get(session[:user].id), :timestamp=>Time.now, :question=>question)
+      parent.children.create(:body => params[:comment], :user => User.get(session[:user].id), :timestamp => Time.now, :question => question)
     end
     # @comment = Comment.create(:body=>params[:comment], :user=>User.get(session[:user].id), :answer=>ans)
-    redirect '/question/'+question.id.to_s
+    redirect '/question/' + question.id.to_s
   else
     redirect '/register'
   end
