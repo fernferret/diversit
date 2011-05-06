@@ -1,5 +1,3 @@
-require 'dm-validations'
-
 class Question
   include DataMapper::Resource
   property :id,         Serial
@@ -7,9 +5,9 @@ class Question
   property :type,       String
   property :timestamp,  DateTime
   property :forday,     Date
-  
+
   has n, :response
-  
+
   def averageAge
     age = 0
     count = self.response.count
@@ -21,7 +19,7 @@ class Question
     end
     return age / count
   end
-  
+
   def commentAge
     age = 0
     count = 0
@@ -31,7 +29,7 @@ class Question
       age += counter['sum']
       count += counter['count']
     end
-    
+
     if count > 0
       return age / count
     else

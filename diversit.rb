@@ -1,8 +1,11 @@
 require 'rubygems'
-require 'sinatra'
+require 'bundler'
+require 'digest/sha1'
+
+Bundler.require
+
 require 'config/database'
 require 'helpers/sinatra'
-require 'haml'
 
 enable :sessions
 
@@ -14,7 +17,7 @@ enable :sessions
 get '/' do
   @question = Question.first(:forday => Date.today)
   @u = session[:user]
-  @users = User.all :order=>[:username]
+  @users = User.all(:order => :username)
   haml :index
 end
 
@@ -28,7 +31,7 @@ get '/addquestion' do
 end
 
 post '/addquestion' do
-  @question = Question.create(:body=>params[:question], :type=>'free', :timestamp=>Time.now)
+  @question = Question.create(:body=>params[:question], :type=>'free', :timestamp=>Time.now, :forday => Date.today)
   haml :question_success
 end
 

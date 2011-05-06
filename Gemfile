@@ -1,0 +1,9 @@
+source :rubygems
+gem 'sinatra'
+gem 'dm-core'
+gem 'haml'
+gem 'sinatra'
+gem 'dm-validations'
+gem 'dm-migrations'
+gem 'dm-is-tree'
+gem 'dm-sqlite-adapter'
