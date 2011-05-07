@@ -23,19 +23,42 @@
         = "Average comment age: "
         %b
           = @question.commentAge
-      - if logged_in? and @question.forday == Date.today
-        %form{:action=>'/question/'+@question.id.to_s, :method=>'POST'}
-        - if @question.type == 'free'
-          %input{:type=>'text', :name=>'response'}
-        - elsif @question.type == 'mc'
-          %input{:type=>'radio', :name=>'choice', :value=>'1'}
-            = @question.choice.get(1).body
-          %input{:type=>'submit', :value => 'Answer this question!'}
+      - if logged_in?
+        .container{:id => 'questionanswer'}
+          %form{:action=>'/question/'+@question.id.to_s, :method=>'POST'}
+            - if @question.type == 'free'
+              .row
+                %input{:type=>'text', :name=>'response'}
+            - elsif @question.type == 'mc'
+              .row
+                %input{:type=>'radio', :name=>'choice', :value=>'1'}
+                  = @question.choice.get(1).body
+              .row
+                %input{:type=>'radio', :name=>'choice', :value=>'2'}
+                  = @question.choice.get(2).body
+              .row
+                %input{:type=>'radio', :name=>'choice', :value=>'3'}
+                  = @question.choice.get(3).body
+              .row
+                %input{:type=>'radio', :name=>'choice', :value=>'4'}
+                  = @question.choice.get(4).body
+              .row
+                = 'Comment: '
+                %input{:type=>'text', :name=>'response'}
+            .row
+              %input{:type=>'submit', :value => 'Answer this question!'}
         %br
       %br
+      - g = Scruffy::Graph.new
+      - g.title = "Response Results"
+      - g.renderer = Scruffy::Renderers::Pie.new
+      - g.add :pie, '', { 'Apple' => 20, 'Banana' => 100, 'Orange' => 70, 'Taco' => 30 }
+      - g.render :to => "pie_test.svg"
+      - g.render :width => 300, :height => 200, :to => "pie_test.png", :as => 'png'
+
       - @responses.each do |response|
         .response
-          - if logged_in? and @question.forday == Date.today
+          - if logged_in?
             = showTree response
           - else
             = showTreeNoLink response

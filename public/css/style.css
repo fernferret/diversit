@@ -50,10 +50,12 @@ div.container {
 }
 
 div#welcome { width:300px; }
-div#answernow { width:200px;}
-div#register { width:400px; }
+div#answernow { width:200px; }
+div#register { width:500px; text-align:right; }
 div#login { width:400px; }
 div#question { width:700px; }
+div#questionadd { width:500px; }
+div#questionanswer { width:500px; }
 div.loginBox {
   float:right;
   padding-right:10px;

@@ -12,10 +12,10 @@
         %a{:href=>'question/'+question.id.to_s}
           = question.body.to_s
           %br
-          = "&nbsp;&nbsp;&nbsp;&nbsp;"+question.forday.to_s
+          = "&nbsp;&nbsp;&nbsp;&nbsp;"+question.timestamp.to_s
           %br
           %br
-          
+
     %br
     %br
     %a{:href=>'addquestion'}

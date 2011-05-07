@@ -7,10 +7,10 @@
   %body
     = haml :header
     = 'Add a Question:<br />'
-    .container{:id => 'question'}
+    .container{:id => 'questionadd'}
       %form{:action=>'/addquestion', :method=>'POST'}
         .row
-          %textarea{:name=>'question', :rows=>'3', :cols=>'50'}
+          %textarea{:name=>'question', :rows=>'3', :cols=>'30'}
         .row
           %input{:type=>'radio', :name=>'type', :value=>'free'} Free Response
         .row

@@ -15,15 +15,14 @@ enable :sessions
 ## PATHS
 
 get '/' do
-  @question = Question.first(:forday => Date.today) # question of the day
-  @users = User.all(:order => :username)            # list of all useres
+  @question = Question.first()           # most recent question
+  @users = User.all(:order => :username) # list of all users
   @u = session[:user]
   haml :index
 end
 
 get '/questions' do
-  # @questions = Question.all(:forday.lt => Date.today, :order => :forday.desc) # list all past questions in desc. order
-  @questions = Question.all(:order => :forday.desc) # list all questions in desc. order
+  @questions = Question.all(:order => :timestamp.desc) # list all questions in desc. order
   haml :question_archive
 end
 
@@ -37,7 +36,7 @@ post '/addquestion' do
   redirect '/register' unless logged_in?
 
   # insert question into database
-  @question = Question.create(:body => params[:question], :type => params[:type], :timestamp => Time.now, :forday => Date.today)
+  @question = Question.create(:body => params[:question], :type => params[:type], :timestamp => Time.now)
   Choice.create(:body => params[:choice1], :question => @question)
   Choice.create(:body => params[:choice2], :question => @question)
   Choice.create(:body => params[:choice3], :question => @question)
@@ -67,7 +66,7 @@ post '/question/:id' do
   @user = User.get(session[:user].id)
   @timestamp = Time.now
 
-  if params[:response].to_s.length > 0 and @question.forday == Date.today # if response is not null and the question is active
+  if params[:response].to_s.length > 0 # if response is not null and the question is active
     Response.create(:body => @body, :choice => @choice, :timestamp => @timestamp, :user => @user, :question => @question)
   end
 
@@ -86,7 +85,7 @@ post '/comment/:qid/:rid' do
   parent = Response.get(params[:rid])
   question = Question.get(params[:qid])
 
-  if params[:comment].length > 0 and question.forday == Date.today
+  if params[:comment].length > 0
     # create new comment as a child of its parent
     parent.children.create(:body => params[:comment], :choice => -1, :timestamp => Time.now, :user => User.get(session[:user].id), :question => question)
   end
