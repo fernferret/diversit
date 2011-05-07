@@ -7,12 +7,13 @@ class Question
   property :forday,     Date
 
   has n, :response
+  has n, :choice
 
   def averageAge
     age = 0
     count = self.response.count
     if count == 0
-      return "No Data Yet"
+      return "no data yet."
     end
     self.response.each do |resp|
       age += resp.user.age

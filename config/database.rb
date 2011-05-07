@@ -1,5 +1,6 @@
 require 'models/User'
 require 'models/Question'
+require 'models/Choice'
 require 'models/Response'
 
 DataMapper::Logger.new($stdout, :debug)

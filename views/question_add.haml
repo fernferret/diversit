@@ -2,12 +2,33 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'content="text/html; charset=utf-8;'}
-    %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "/css/style.css"}
     %title="Add a Question"
   %body
+    = haml :header
     = 'Add a Question:<br />'
-    %form{:action=>'/addquestion', :method=>'POST'}
-      %input{:type=>'text', :name=>'question'}
-      %input{:type=>'submit'}
+    .container{:id => 'question'}
+      %form{:action=>'/addquestion', :method=>'POST'}
+        .row
+          %textarea{:name=>'question', :rows=>'3', :cols=>'50'}
+        .row
+          %input{:type=>'radio', :name=>'type', :value=>'free'} Free Response
+        .row
+          %input{:type=>'radio', :name=>'type', :value=>'mc'} Multiple Choice
+        .row
+          = 'Choice 1: '
+          %input{:type=>'text', :name=>'choice1'}
+        .row
+          = 'Choice 2: '
+          %input{:type=>'text', :name=>'choice2'}
+        .row
+          = 'Choice 3: '
+          %input{:type=>'text', :name=>'choice3'}
+        .row
+          = 'Choice 4: '
+          %input{:type=>'text', :name=>'choice4'}
+        .row
+          %input{:type=>'submit'}
     %a{:href=>'/questions'}
       = 'View all questions'
+    = haml :footer

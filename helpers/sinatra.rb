@@ -3,11 +3,11 @@ helpers do
     return true if session[:user]
     nil
   end
-  
+
   def logged_in
     return session[:user]
   end
-  
+
   def link_to name, location, alternative = false
     if alternative and alternative[:condition]
       "<a href=#{alternative[:location]}>#{alternative[:name]}</a>"
@@ -34,18 +34,18 @@ helpers do
       "<fieldset><legend>Notice</legend><p>#{tmp}</p></fieldset>"
     end
   end
-  
+
   def protected!
     unless session[:user]
       redirect '/login'
     end
   end
-  
+
   def showTree root
     tree = ""
     tree += "<ul>"
     tree += "<li>"
-    tree += '<a href="/addcomment/'+root.question.id.to_s+'/'+root.id.to_s+'">'+root.body+'</a>'
+    tree += '<a href="/comment/'+root.question.id.to_s+'/'+root.id.to_s+'">'+root.body+'</a>'
     unless root.children.nil?
       root.children.each do |child|
         tree += showTree child
@@ -55,7 +55,7 @@ helpers do
     tree += "</ul>"
     return tree
   end
-  
+
   def showTreeNoLink root
     tree = ""
     tree += "<ul>"
@@ -70,5 +70,5 @@ helpers do
     tree += "</ul>"
     return tree
   end
-  
+
 end

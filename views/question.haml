@@ -25,16 +25,20 @@
           = @question.commentAge
       - if logged_in? and @question.forday == Date.today
         %form{:action=>'/question/'+@question.id.to_s, :method=>'POST'}
+        - if @question.type == 'free'
           %input{:type=>'text', :name=>'response'}
+        - elsif @question.type == 'mc'
+          %input{:type=>'radio', :name=>'choice', :value=>'1'}
+            = @question.choice.get(1).body
           %input{:type=>'submit', :value => 'Answer this question!'}
         %br
       %br
-      - @answers.each do |answer|
+      - @responses.each do |response|
         .response
           - if logged_in? and @question.forday == Date.today
-            = showTree answer
+            = showTree response
           - else
-            = showTreeNoLink answer
+            = showTreeNoLink response
       %a{:href=>'/questions'}
         = 'View all questions'
     = haml :footer

@@ -3,6 +3,7 @@ class Response
   property :id,         Serial
   property :parent_id,  Integer
   property :body,       Text
+  property :choice,     Integer
   property :timestamp,  DateTime
 
   belongs_to :user

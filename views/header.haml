@@ -1,15 +1,15 @@
 .header
   .title
     %a{:href => '/'}
-      = "diversiT"
+      = "DiversIT"
   .loginBox
     - if !logged_in?
       %form{:action => '/login', :method => 'POST'}
         .row
           %span{:class => 'label'}
-            = 'email: '
+            = 'username: '
           %span{:class => 'formw'}
-            %input{:type => 'text', :id => 'email', :name => 'email', :size => '20'}
+            %input{:type => 'text', :id => 'username', :name => 'username', :size => '20'}
         .row
           %span{:class => 'label'}
             = 'password: '
@@ -27,16 +27,23 @@
       = 'Home'
     = ' | '
     %a{:href => '/questions'}
-      = 'Old Questions'
+      = 'Questions'
     - if session[:user]
       = ' | '
       %a{:href => '/profile'}
-        = 'My Profile'
+        = 'Profile'
     - else
       = ' | '
       %a{:href => '/register'}
         = 'Register'
     = ' | '
-    
     %a{:href => '/about'}
-      = 'About'
+      = 'About DiversIT'
+  .error
+    - if session[:error]
+      = session[:error]
+      - session[:error] = nil
+  .notice
+    - if session[:notice]
+      = session[:notice]
+      - session[:notice] = nil

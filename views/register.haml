@@ -9,14 +9,14 @@
     .container{:id => 'register'}
       %form{:action => '/register', :method => 'POST'}
         .row
-          = 'Enter your Email Address: '
-          %input{:type => 'text', :id => 'email', :name => 'email'}
+          = 'Enter a username: '
+          %input{:type => 'text', :id => 'username', :name => 'username'}
         .row
           = 'What\'s your first name?: '
-          %input{:type => 'text', :id => 'first', :name => 'first'}
+          %input{:type => 'text', :id => 'firstname', :name => 'firstname'}
         .row
           = 'What\'s your last name?'
-          %input{:type => 'text', :id => 'last', :name => 'last'}
+          %input{:type => 'text', :id => 'lastname', :name => 'lastname'}
         .row
           = 'Type a Password: '
           %input{:type => 'password', :id => 'password', :name => 'password'}
@@ -25,7 +25,7 @@
           %input{:type => 'password', :id => 'pconfirm', :name => 'pconfirm'}
         .row
           = 'Your birth date: '
-          %input{:type => 'text', :id => 'bdate', :name => 'bdate'}
+          %input{:type => 'text', :id => 'dob', :name => 'dob'}
         .row
           %input{:type => 'submit'}
     = haml :footer
