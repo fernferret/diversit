@@ -27,5 +27,11 @@
           = 'Your birth date: '
           %input{:type => 'text', :id => 'dob', :name => 'dob'}
         .row
+          = 'Gender: '
+          %input{:type => 'text', :id => 'gender', :name => 'gender'}
+        .row
+          = 'Income: '
+          %input{:type => 'text', :id => 'income', :name => 'income'}
+        .row
           %input{:type => 'submit'}
     = haml :footer

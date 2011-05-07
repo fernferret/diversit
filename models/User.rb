@@ -6,6 +6,8 @@ class User
   property :firstname,  String
   property :lastname,   String
   property :dob,        Date
+  property :gender,     String
+  property :income,     Integer
 
   has n, :response
 

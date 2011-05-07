@@ -1,11 +1,13 @@
 require 'rubygems'
 require 'bundler'
 require 'digest/sha1'
+require 'pp'
 
 Bundler.require
 
 require 'config/database'
 require 'helpers/sinatra'
+require 'helpers/gruff'
 
 enable :sessions
 
@@ -107,6 +109,8 @@ post '/register' do
     params['password'] != '' and
     params['pconfirm'] != '' and
     params['dob'] != '' and
+    params['gender'] != '' and
+    params['income'] != '' and
     params['password'] == params['pconfirm'])
 
   if not valid
@@ -118,10 +122,12 @@ post '/register' do
   # create user
   u = User.new
   u.username = params['username']
-  u.password = params['password']
-  u.dob = params['dob']
   u.firstname = params['firstname']
   u.lastname = params['lastname']
+  u.password = params['password']
+  u.dob = params['dob']
+  u.gender = params['gender']
+  u.income = params['income']
   u.save
 
   # log in user
