@@ -5,37 +5,38 @@
     %link{:rel => "stylesheet", :type => "text/css", :href => "/css/style.css"}
     %title="DiversIT: Register"
   %body
-    = haml :header
-    .container{:id => 'register'}
-      %form{:action => '/register', :method => 'POST'}
-        .row
-          = 'What username would you like?: '
-          %input{:type => 'text', :id => 'username', :name => 'username'}
-        .row
-          = 'What\'s your first name?: '
-          %input{:type => 'text', :id => 'firstname', :name => 'firstname'}
-        .row
-          = 'What\'s your last name?: '
-          %input{:type => 'text', :id => 'lastname', :name => 'lastname'}
-        .row
-          = 'Type in a password: '
-          %input{:type => 'password', :id => 'password', :name => 'password'}
-        .row
-          = 'Type in that password again: '
-          %input{:type => 'password', :id => 'pconfirm', :name => 'pconfirm'}
-        .row
-          = 'What is your birth date? (mm-dd-yyyy): '
-          %input{:type => 'text', :id => 'dob', :name => 'dob'}
-        .row
-          = 'Are you a male or a female?: '
-          %input{:type=>'radio', :id=>'gender', :name=>'gender', :value=>'0', :checked=>'yes'}
-            = 'Male'
-          %input{:type=>'radio', :id=>'gender', :name=>'gender', :value=>'1'}
-            = 'Female'
-          -# %input{:type => 'text', :id => 'gender', :name => 'gender'}
-        .row
-          = 'What is your annual income?: '
-          %input{:type => 'text', :id => 'income', :name => 'income'}
-        .row
-          %input{:type => 'submit'}
-    = haml :footer
+    .everything
+      = haml :header
+      .container{:id => 'register'}
+        %form{:action => '/register', :method => 'POST'}
+          .row
+            = 'What username would you like?: '
+            %input{:type => 'text', :id => 'username', :name => 'username'}
+          .row
+            = 'What\'s your first name?: '
+            %input{:type => 'text', :id => 'firstname', :name => 'firstname'}
+          .row
+            = 'What\'s your last name?: '
+            %input{:type => 'text', :id => 'lastname', :name => 'lastname'}
+          .row
+            = 'Type in a password: '
+            %input{:type => 'password', :id => 'password', :name => 'password'}
+          .row
+            = 'Type in that password again: '
+            %input{:type => 'password', :id => 'pconfirm', :name => 'pconfirm'}
+          .row
+            = 'What is your birth date? (mm-dd-yyyy): '
+            %input{:type => 'text', :id => 'dob', :name => 'dob'}
+          .row
+            = 'Are you a male or a female?: '
+            %input{:type=>'radio', :id=>'gender', :name=>'gender', :value=>'0', :checked=>'yes'}
+              = 'Male'
+            %input{:type=>'radio', :id=>'gender', :name=>'gender', :value=>'1'}
+              = 'Female'
+            -# %input{:type => 'text', :id => 'gender', :name => 'gender'}
+          .row
+            = 'What is your annual income?: '
+            %input{:type => 'text', :id => 'income', :name => 'income'}
+          .row
+            %input{:type => 'submit'}
+      = haml :footer

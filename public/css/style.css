@@ -6,7 +6,9 @@ body {
   font-size:100%;
   text-shadow: 0px 0px 1px #404040;
 }
-
+html {
+  margin:0px;
+}
 h1, h2, h3 {
 }
 
@@ -53,7 +55,7 @@ div.container {
 div#welcome { width:300px; }
 div#index { width: 700px; }
 div#answernow { width:200px; }
-div#register { width:700px; text-align:right; }
+div#register { width:500px; text-align:right; }
 div#login { width:400px; }
 div#question { width:700px; }
 div#questionadd { width:500px; }
@@ -153,4 +155,9 @@ div.questiontimestamp {
 .answerarea input{
   font-size:30px;
   padding:10px;
+}
+.everything {
+  margin-left:auto;
+  margin-right:auto;
+  width:1180px;
 }
