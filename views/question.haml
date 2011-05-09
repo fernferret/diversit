@@ -12,14 +12,15 @@
     - else
       .container{:id => 'questionanswer'}
         = @question.body
-      .stats
-        = "Average response age: "
-        %b
-          = @question.averageAge
-        %br
-        = "Average comment age: "
-        %b
-          = @question.commentAge
+      %br
+      -# .stats
+        -# = "Average response age: "
+        -# %b
+        -#   = @question.averageAge
+        -# %br
+        -# = "Average comment age: "
+        -# %b
+        -#   = @question.commentAge
         -# %br
         -# = "Average gender: "
         -# %b
@@ -57,14 +58,38 @@
 
       %center
         - if @question.type == 'mc'
-          - demo_id = 0
-          - data = []
-          - (1..4).each do |i|
-            - data << ['Choice ' + i.to_s, @responses.all(:choice => i).length]
-          - g = gruff_pie(@question.body, data, @question.id, demo_id)
-          - path = "/images/" + @question.id.to_s + "_" + demo_id.to_s + ".png"
-          - g.write("public" + path)
-          %img{ :src => path }
+          - (0..2).each do |demo_id|
+            - if demo_id == 0
+              - (0..1).each do |var|
+                - data = []
+                - (1..4).each do |i|
+                  - data << [@question.choice.get(i).body, @responses.all(:choice => i, :user => {:gender => var}).length]
+                  = pp data
+                - g = gruff_pie(@question.body, data, @question.id, demo_id, var)
+                - path = "/images/" + @question.id.to_s + "_" + demo_id.to_s + "_" + var.to_s + ".png"
+                - g.write("public" + path)
+                %img{ :src => path }
+            - elsif demo_id == 1
+              - brackets = [(0..24), (25..44), (45..100)]
+              - (0..2).each do |var|
+                - data = []
+                - (1..4).each do |i|
+                  - data << [@question.choice.get(i).body, @responses.all(:choice => i, :user => {:age.lt => (brackets[var].max), :age.gt => (brackets[var].min)}).length]
+                - g = gruff_pie(@question.body, data, @question.id, demo_id, var)
+                - path = "/images/" + @question.id.to_s + "_" + demo_id.to_s + "_" + var.to_s + ".png"
+                - g.write("public" + path)
+                %img{ :src => path }
+            - elsif demo_id == 2
+              - brackets = [(0..39999), (40000..79999), (80000..1000000)]
+              - (0..2).each do |var|
+                - data = []
+                - (1..4).each do |i|
+                  - data << [@question.choice.get(i).body, @responses.all(:choice => i, :user => {:income.lt => (brackets[var].max), :income.gt => (brackets[var].min)}).length]
+                - g = gruff_pie(@question.body, data, @question.id, demo_id, var)
+                - path = "/images/" + @question.id.to_s + "_" + demo_id.to_s + "_" + var.to_s + ".png"
+                - g.write("public" + path)
+                %img{ :src => path }
+            %br
 
       - @responses.each do |response|
         .response
@@ -73,5 +98,5 @@
           - else
             = showTreeNoLink response
       %a{:href=>'/questions'}
-        = 'View all questions'
+        = 'View all questions.'
     = haml :footer

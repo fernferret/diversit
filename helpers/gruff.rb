@@ -23,17 +23,48 @@ class DiversitPie < Gruff::Mini::Pie
     self.theme = {
       :colors => @colors,
       :additional_line_colors => [],
-      :marker_color => 'white',
-      :font_color => 'white',
+      :marker_color => '#eeeeee',
+      :font_color => '#eeeeee',
       :background_colors => 'transparent',
       :background_image => nil
     }
   end
 end
 
-def gruff_pie(title, data, qid, demo_id)
-  g = DiversitPie.new
-  g.title = title
+def gruff_pie(title, data, qid, demo_id, var)
+  g = DiversitPie.new('500x400')
+  g.title = ''
+  case demo_id
+  when 0
+    g.title += "Gender: "
+    case var
+    when 0
+      g.title += "Male"
+    when 1
+      g.title += "Female"
+    end
+  when 1
+    g.title += "Age: "
+    case var
+    when 0
+      g.title += "< 25"
+    when 1
+      g.title += "25 to 44"
+    when 2
+      g.title += "> 45"
+    end
+  when 2
+    g.title += "Income: "
+    case var
+    when 0
+      g.title += "< 40,000"
+    when 1
+      g.title += "40,000 to 80,000"
+    when 2
+      g.title += "> 80,000"
+    end
+  end
+
   g.theme_diversit()
   data.each do |d|
     g.data d[0], d[1]

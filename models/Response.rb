@@ -2,7 +2,7 @@ class Response
   include DataMapper::Resource
   property :id,         Serial
   property :parent_id,  Integer
-  property :body,       Text
+  property :body,       Text, :length => 255
   property :choice,     Integer
   property :timestamp,  DateTime
 

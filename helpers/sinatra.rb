@@ -46,7 +46,11 @@ helpers do
     tree += "<ul>"
     tree += "<li>"
     tree += "User " + (root.user.id * 7919 % 6997).to_s + " "
-    tree += "(" + root.timestamp.to_s[0..9] + ") - "
+    if root.parent_id == nil
+      tree += "(" + root.timestamp.to_s[0..9] + ") - (" + "Choice: " + (root.choice + 64).chr + ") - "
+    else
+      tree += "(" + root.timestamp.to_s[0..9] + ") - "
+    end
     tree += '<a href="/comment/'+root.question.id.to_s+'/'+root.id.to_s+'">'+root.body+'</a> '
     unless root.children.nil?
       root.children.each do |child|

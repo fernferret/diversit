@@ -5,8 +5,8 @@ class User
   property :password_encrypted,   String
   property :firstname,  String
   property :lastname,   String
-  property :dob,        Date
-  property :gender,     String
+  property :age,        Integer
+  property :gender,     Integer
   property :income,     Integer
 
   has n, :response
@@ -31,8 +31,7 @@ class User
     nil
   end
 
-  def age
-    return (Date.today - self.dob).to_i/365
-  end
-
+  # def age
+  #   return (Date.today - self.dob).to_i/365
+  # end
 end

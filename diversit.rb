@@ -128,7 +128,7 @@ post '/register' do
   u.firstname = params['firstname']
   u.lastname = params['lastname']
   u.password = params['password']
-  u.dob = params['dob']
+  u.age = (Date.today - Date.parse(params['dob'])).to_i/365
   u.gender = params['gender']
   u.income = params['income'].gsub(/[^0-9]/, '')
   u.save

@@ -18,7 +18,7 @@
       %br
       = 'Age: '
       %b
-        = ((Date.today - @user.dob).to_i/365).to_s
+        = @user.age.to_s
       %br
       = 'Gender: '
       %b
