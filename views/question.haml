@@ -4,10 +4,7 @@
     %meta{'http-equiv' => 'Content-Type', :content => 'content="text/html; charset=utf-8;'}
     %link{:rel => "stylesheet", :type => "text/css", :href => "/css/style.css"}
     %title
-      - if @question == nil
-        = 'Sorry, question not found.'
-      - else
-        = @question.body
+      = 'DiversIT: View Question'
   %body
     = haml :header
     - if @question == nil
@@ -50,15 +47,16 @@
         %br
       %br
 
-      - if @question.type == 'mc'
-        - demo_id = 0
-        - data = []
-        - (1..4).each do |i|
-          - data << ['Choice ' + i.to_s, @responses.all(:choice => i).length]
-        - g = gruff_pie(@question.body, data, @question.id, demo_id)
-        - path = "/images/" + @question.id.to_s + "_" + demo_id.to_s + ".png"
-        - g.write("public" + path)
-        %img{ :src => path }
+      %center
+        - if @question.type == 'mc'
+          - demo_id = 0
+          - data = []
+          - (1..4).each do |i|
+            - data << ['Choice ' + i.to_s, @responses.all(:choice => i).length]
+          - g = gruff_pie(@question.body, data, @question.id, demo_id)
+          - path = "/images/" + @question.id.to_s + "_" + demo_id.to_s + ".png"
+          - g.write("public" + path)
+          %img{ :src => path }
 
       - @responses.each do |response|
         .response
