@@ -1,7 +1,7 @@
 class Question
   include DataMapper::Resource
   property :id,         Serial
-  property :body,       String
+  property :body,       String, :length => 255
   property :type,       String
   property :timestamp,  DateTime
 
@@ -33,7 +33,7 @@ class Question
     if count > 0
       return age / count
     else
-      return "No Data Yet"
+      return "no data yet."
     end
   end
 end

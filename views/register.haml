@@ -9,7 +9,7 @@
     .container{:id => 'register'}
       %form{:action => '/register', :method => 'POST'}
         .row
-          = 'Enter a username: '
+          = 'What username would you like?: '
           %input{:type => 'text', :id => 'username', :name => 'username'}
         .row
           = 'What\'s your first name?: '
@@ -18,19 +18,23 @@
           = 'What\'s your last name?: '
           %input{:type => 'text', :id => 'lastname', :name => 'lastname'}
         .row
-          = 'Type a Password: '
+          = 'Type in a password: '
           %input{:type => 'password', :id => 'password', :name => 'password'}
         .row
-          = 'Type it again: '
+          = 'Type in that password again: '
           %input{:type => 'password', :id => 'pconfirm', :name => 'pconfirm'}
         .row
-          = 'Your birth date: '
+          = 'What is your birth date? (mm-dd-yyyy): '
           %input{:type => 'text', :id => 'dob', :name => 'dob'}
         .row
-          = 'Gender: '
-          %input{:type => 'text', :id => 'gender', :name => 'gender'}
+          = 'Are you a male or a female?: '
+          %input{:type=>'radio', :id=>'gender', :name=>'gender', :value=>'0', :checked=>'yes'}
+            = 'Male'
+          %input{:type=>'radio', :id=>'gender', :name=>'gender', :value=>'1'}
+            = 'Female'
+          -# %input{:type => 'text', :id => 'gender', :name => 'gender'}
         .row
-          = 'Income: '
+          = 'What is your annual income?: '
           %input{:type => 'text', :id => 'income', :name => 'income'}
         .row
           %input{:type => 'submit'}
