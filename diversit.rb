@@ -128,7 +128,7 @@ post '/register' do
   u.password = params['password']
   u.dob = params['dob']
   u.gender = params['gender']
-  u.income = params['income']
+  u.income = params['income'].gsub(/[^0-9]/, '')
   u.save
 
   # log in user

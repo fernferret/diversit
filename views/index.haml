@@ -10,8 +10,8 @@
       .question
         = @question.body
       .answerbox
-        .container{:id => 'index'}
-          - if @u
+        - if @u
+          .container{:id => 'index'}
             .answerarea
               %form{:action => '/question/'+@question.id.to_s, :method => 'POST'}
                 - if @question.type == 'free'
