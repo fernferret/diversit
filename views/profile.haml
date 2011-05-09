@@ -8,15 +8,27 @@
   %body
     = haml :header
     .container{:id => 'profile'}
-      = 'Username: ' + @user.username
+      = 'Username: '
+      %b
+        = @user.username
       %br
-      = 'Real name: ' + @user.firstname + ' ' + @user.lastname
+      = 'Real name: '
+      %b
+        = @user.firstname + ' ' + @user.lastname
       %br
-      = 'Age: ' + ((Date.today - @user.dob).to_i/365).to_s
+      = 'Age: '
+      %b
+        = ((Date.today - @user.dob).to_i/365).to_s
       %br
-      = 'Gender: ' + @user.gender
+      = 'Gender: '
+      %b
+        = @user.gender
       %br
-      = 'Income: ' + @user.income.to_s
+      = 'Income: '
+      %b
+        = "$" + @user.income.to_s
       %br
-      = 'Number of responses: ' + @user.response.all().length.to_s
+      = 'Number of responses: '
+      %b
+        = @user.response.all().length.to_s
     = haml :footer

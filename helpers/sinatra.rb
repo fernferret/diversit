@@ -45,7 +45,9 @@ helpers do
     tree = ""
     tree += "<ul>"
     tree += "<li>"
-    tree += '<a href="/comment/'+root.question.id.to_s+'/'+root.id.to_s+'">'+root.body+'</a>'
+    tree += "User " + (root.user.id * 7919 % 6997).to_s + " - "
+    tree += '<a href="/comment/'+root.question.id.to_s+'/'+root.id.to_s+'">'+root.body+'</a> '
+    tree += root.timestamp.to_s
     unless root.children.nil?
       root.children.each do |child|
         tree += showTree child

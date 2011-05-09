@@ -18,7 +18,7 @@
         .row
           %input{:type => 'submit', :text => 'Login'}
     - else
-      = "Welcome "+logged_in.firstname + " " + logged_in.lastname
+      = "Welcome, "+logged_in.firstname + " " + logged_in.lastname + "!"
       %br
       %a{:href => '/logout'}
         = 'Logout'

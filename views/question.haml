@@ -10,7 +10,7 @@
     - if @question == nil
       = 'Sorry, question not found.'
     - else
-      %b
+      .container{:id => 'questionanswer'}
         = @question.body
       .stats
         = "Average answer age: "
