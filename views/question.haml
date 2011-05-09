@@ -13,13 +13,21 @@
       .container{:id => 'questionanswer'}
         = @question.body
       .stats
-        = "Average answer age: "
+        = "Average response age: "
         %b
           = @question.averageAge
         %br
         = "Average comment age: "
         %b
           = @question.commentAge
+        -# %br
+        -# = "Average gender: "
+        -# %b
+        -#   = @question.averageGender
+        -# %br
+        -# = "Average income: "
+        -# %b
+        -#   = @question.averageIncome
       - if logged_in?
         .container{:id => 'questionanswer'}
           %form{:action=>'/question/'+@question.id.to_s, :method=>'POST'}
