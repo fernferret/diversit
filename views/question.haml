@@ -67,11 +67,11 @@
       -# - g.render :width => 500, :height => 500, :to => "public/images/pie_test.png", :as => 'png'
       -# %img{ :src => "/images/pie_test.png" }
 
-      %br
+      -# %br
 
-      - values = data.map { |d| d.last }
-      - labels = data.map { |d| d.first }
-      %img{ :src => Gchart.pie_3d(:title => 'Distribution of Responses', :size => '600x300', :data => values, :labels => labels ) }
+      -# - values = data.map { |d| d.last }
+      -# - labels = data.map { |d| d.first }
+      -# %img{ :src => Gchart.pie_3d(:title => 'Distribution of Responses', :size => '600x300', :data => values, :labels => labels ) }
 
 
       - @responses.each do |response|

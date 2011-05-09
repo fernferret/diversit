@@ -11,13 +11,13 @@ class DiversitPie < Gruff::Mini::Pie
     @yellow = '#FFF804'
     @red = '#ff0000'
     @black = 'black'
-    @colors = [@yellow, @blue, @green, @red, @purple, @orange, @black]
+    @colors = [@yellow, @blue, @green, @red, @black]
+    # @base_image = render_transparent_background
 
     self.theme = {
-      :colors => @colors,
-      :marker_color => 'white',
-      :font_color => 'white',
-      :background_color => 'transparent'
+      :colors => %w(orange purple green white red),
+      :marker_color => 'blue',
+      :background_colors => 'transparent'
     }
   end
 end

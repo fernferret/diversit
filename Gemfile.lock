@@ -2,7 +2,6 @@ GEM
   remote: http://rubygems.org/
   specs:
     addressable (2.2.5)
-    builder (3.0.0)
     data_objects (0.10.5)
       addressable (~> 2.1)
     dm-core (1.1.0)
@@ -21,11 +20,9 @@ GEM
       dm-core (~> 1.1.0)
     do_sqlite3 (0.10.5-x86-mingw32)
       data_objects (= 0.10.5)
-    googlecharts (1.6.3)
     gruff (0.3.6)
     haml (3.1.1)
     rack (1.2.2)
-    scruffy (0.2.6)
     sinatra (1.2.6)
       rack (~> 1.1)
       tilt (>= 1.2.2, < 2.0)
@@ -35,14 +32,11 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  builder
   dm-core
   dm-is-tree
   dm-migrations
   dm-sqlite-adapter
   dm-validations
-  googlecharts
   gruff
   haml
-  scruffy
   sinatra
