@@ -2,7 +2,9 @@ require 'rubygems'
 require 'bundler'
 require 'digest/sha1'
 require 'pp'
-require 'RMagick'
+if(RUBY_PLATFORM =~ /win/)
+  require 'RMagick'
+end
 
 Bundler.require
 
