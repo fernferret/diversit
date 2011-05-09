@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler'
 require 'digest/sha1'
 require 'pp'
+require 'RMagick'
 
 Bundler.require
 
@@ -17,7 +18,7 @@ enable :sessions
 ## PATHS
 
 get '/' do
-  @question = Question.first()           # most recent question
+  @question = Question.first(:order => :timestamp.desc)           # most recent question
   @users = User.all(:order => :username) # list of all users
   @u = session[:user]
   haml :index

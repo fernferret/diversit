@@ -54,25 +54,10 @@
       - data = []
       - (1..4).each do |i|
         - data << ['Choice ' + i.to_s, @responses.all(:choice => i).length]
-      - g = gruff_pie("Distribution of Responses", data, @question.id, demo_id)
+      - g = gruff_pie(@question.body, data, @question.id, demo_id)
       - path = "/images/" + @question.id.to_s + "_" + demo_id.to_s + ".png"
       - g.write("public" + path)
       %img{ :src => path }
-
-      -# - g = Scruffy::Graph.new
-      -# - g.title = "Response Results"
-      -# - g.renderer = Scruffy::Renderers::Pie.new
-      -# - g.add :pie, '', { 'Apple' => 20, 'Banana' => 100, 'Orange' => 70, 'Taco' => 30 }
-      -# - g.render :to => "public/images/pie_test.svg"
-      -# - g.render :width => 500, :height => 500, :to => "public/images/pie_test.png", :as => 'png'
-      -# %img{ :src => "/images/pie_test.png" }
-
-      %br
-
-      - values = data.map { |d| d.last }
-      - labels = data.map { |d| d.first }
-      %img{ :src => Gchart.pie_3d(:title => 'Distribution of Responses', :size => '600x300', :data => values, :labels => labels ) }
-
 
       - @responses.each do |response|
         .response

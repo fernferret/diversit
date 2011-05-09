@@ -6,18 +6,21 @@ class DiversitPie < Gruff::Mini::Pie
   end
 
   def theme_diversit()
+    @red = '#ff3333'
     @green = '#339933'
     @blue = '#336699'
-    @yellow = '#FFF804'
-    @red = '#ff0000'
+    @yellow = '#FFFF00'
     @black = 'black'
-    @colors = [@yellow, @blue, @green, @red, @purple, @orange, @black]
+    @colors = [@red, @green, @blue, @yellow, @black]
+    @font = 'helvetica'
 
     self.theme = {
       :colors => @colors,
+      :additional_line_colors => [],
       :marker_color => 'white',
       :font_color => 'white',
-      :background_color => 'transparent'
+      :background_colors => 'transparent',
+      :background_image => nil
     }
   end
 end
