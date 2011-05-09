@@ -6,97 +6,98 @@
     %title
       = 'DiversIT: View Question'
   %body
-    = haml :header
-    - if @question == nil
-      = 'Sorry, question not found.'
-    - else
-      .container{:id => 'questionanswer'}
-        = @question.body
-      %br
-      -# .stats
-        -# = "Average response age: "
-        -# %b
-        -#   = @question.averageAge
-        -# %br
-        -# = "Average comment age: "
-        -# %b
-        -#   = @question.commentAge
-        -# %br
-        -# = "Average gender: "
-        -# %b
-        -#   = @question.averageGender
-        -# %br
-        -# = "Average income: "
-        -# %b
-        -#   = @question.averageIncome
-      - if logged_in?
+    .everything
+      = haml :header
+      - if @question == nil
+        = 'Sorry, question not found.'
+      - else
         .container{:id => 'questionanswer'}
-          %form{:action=>'/question/'+@question.id.to_s, :method=>'POST'}
-            - if @question.type == 'free'
-              .row
-                %input{:type=>'text', :name=>'response'}
-            - elsif @question.type == 'mc'
-              .row
-                %input{:type=>'radio', :name=>'choice', :value=>'1'}
-                  = @question.choice.get(1).body
-              .row
-                %input{:type=>'radio', :name=>'choice', :value=>'2'}
-                  = @question.choice.get(2).body
-              .row
-                %input{:type=>'radio', :name=>'choice', :value=>'3'}
-                  = @question.choice.get(3).body
-              .row
-                %input{:type=>'radio', :name=>'choice', :value=>'4'}
-                  = @question.choice.get(4).body
-              .row
-                = 'Comment: '
-                %input{:type=>'text', :name=>'response'}
-            .row
-              %input{:type=>'submit', :value => 'Answer this question!'}
+          = @question.body
         %br
-      %br
+        -# .stats
+          -# = "Average response age: "
+          -# %b
+          -#   = @question.averageAge
+          -# %br
+          -# = "Average comment age: "
+          -# %b
+          -#   = @question.commentAge
+          -# %br
+          -# = "Average gender: "
+          -# %b
+          -#   = @question.averageGender
+          -# %br
+          -# = "Average income: "
+          -# %b
+          -#   = @question.averageIncome
+        - if logged_in?
+          .container{:id => 'questionanswer'}
+            %form{:action=>'/question/'+@question.id.to_s, :method=>'POST'}
+              - if @question.type == 'free'
+                .row
+                  %input{:type=>'text', :name=>'response'}
+              - elsif @question.type == 'mc'
+                .row
+                  %input{:type=>'radio', :name=>'choice', :value=>'1'}
+                    = @question.choice.get(1).body
+                .row
+                  %input{:type=>'radio', :name=>'choice', :value=>'2'}
+                    = @question.choice.get(2).body
+                .row
+                  %input{:type=>'radio', :name=>'choice', :value=>'3'}
+                    = @question.choice.get(3).body
+                .row
+                  %input{:type=>'radio', :name=>'choice', :value=>'4'}
+                    = @question.choice.get(4).body
+                .row
+                  = 'Comment: '
+                  %input{:type=>'text', :name=>'response'}
+              .row
+                %input{:type=>'submit', :value => 'Answer this question!'}
+          %br
+        %br
 
-      %center
-        - if @question.type == 'mc'
-          - (0..2).each do |demo_id|
-            - if demo_id == 0
-              - (0..1).each do |var|
-                - data = []
-                - (1..4).each do |i|
-                  - data << [@question.choice.get(i).body, @responses.all(:choice => i, :user => {:gender => var}).length]
-                  = pp data
-                - g = gruff_pie(@question.body, data, @question.id, demo_id, var)
-                - path = "/images/" + @question.id.to_s + "_" + demo_id.to_s + "_" + var.to_s + ".png"
-                - g.write("public" + path)
-                %img{ :src => path }
-            - elsif demo_id == 1
-              - brackets = [(0..24), (25..44), (45..100)]
-              - (0..2).each do |var|
-                - data = []
-                - (1..4).each do |i|
-                  - data << [@question.choice.get(i).body, @responses.all(:choice => i, :user => {:age.lt => (brackets[var].max), :age.gt => (brackets[var].min)}).length]
-                - g = gruff_pie(@question.body, data, @question.id, demo_id, var)
-                - path = "/images/" + @question.id.to_s + "_" + demo_id.to_s + "_" + var.to_s + ".png"
-                - g.write("public" + path)
-                %img{ :src => path }
-            - elsif demo_id == 2
-              - brackets = [(0..39999), (40000..79999), (80000..1000000)]
-              - (0..2).each do |var|
-                - data = []
-                - (1..4).each do |i|
-                  - data << [@question.choice.get(i).body, @responses.all(:choice => i, :user => {:income.lt => (brackets[var].max), :income.gt => (brackets[var].min)}).length]
-                - g = gruff_pie(@question.body, data, @question.id, demo_id, var)
-                - path = "/images/" + @question.id.to_s + "_" + demo_id.to_s + "_" + var.to_s + ".png"
-                - g.write("public" + path)
-                %img{ :src => path }
-            %br
+        %center
+          - if @question.type == 'mc'
+            - (0..2).each do |demo_id|
+              - if demo_id == 0
+                - (0..1).each do |var|
+                  - data = []
+                  - (1..4).each do |i|
+                    - data << [@question.choice.get(i).body, @responses.all(:choice => i, :user => {:gender => var}).length]
+                    = pp data
+                  - g = gruff_pie(@question.body, data, @question.id, demo_id, var)
+                  - path = "/images/" + @question.id.to_s + "_" + demo_id.to_s + "_" + var.to_s + ".png"
+                  - g.write("public" + path)
+                  %img{ :src => path }
+              - elsif demo_id == 1
+                - brackets = [(0..24), (25..44), (45..100)]
+                - (0..2).each do |var|
+                  - data = []
+                  - (1..4).each do |i|
+                    - data << [@question.choice.get(i).body, @responses.all(:choice => i, :user => {:age.lt => (brackets[var].max), :age.gt => (brackets[var].min)}).length]
+                  - g = gruff_pie(@question.body, data, @question.id, demo_id, var)
+                  - path = "/images/" + @question.id.to_s + "_" + demo_id.to_s + "_" + var.to_s + ".png"
+                  - g.write("public" + path)
+                  %img{ :src => path }
+              - elsif demo_id == 2
+                - brackets = [(0..39999), (40000..79999), (80000..1000000)]
+                - (0..2).each do |var|
+                  - data = []
+                  - (1..4).each do |i|
+                    - data << [@question.choice.get(i).body, @responses.all(:choice => i, :user => {:income.lt => (brackets[var].max), :income.gt => (brackets[var].min)}).length]
+                  - g = gruff_pie(@question.body, data, @question.id, demo_id, var)
+                  - path = "/images/" + @question.id.to_s + "_" + demo_id.to_s + "_" + var.to_s + ".png"
+                  - g.write("public" + path)
+                  %img{ :src => path }
+              %br
 
-      - @responses.each do |response|
-        .response
-          - if logged_in?
-            = showTree response
-          - else
-            = showTreeNoLink response
-      %a{:href=>'/questions'}
-        = 'View all questions.'
-    = haml :footer
+        - @responses.each do |response|
+          .response
+            - if logged_in?
+              = showTree response
+            - else
+              = showTreeNoLink response
+        %a{:href=>'/questions'}
+          = 'View all questions.'
+      = haml :footer

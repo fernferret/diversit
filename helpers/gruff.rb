@@ -32,7 +32,7 @@ class DiversitPie < Gruff::Mini::Pie
 end
 
 def gruff_pie(title, data, qid, demo_id, var)
-  g = DiversitPie.new('500x400')
+  g = DiversitPie.new('300x300')
   g.title = ''
   case demo_id
   when 0

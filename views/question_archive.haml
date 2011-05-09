@@ -5,18 +5,19 @@
     %link{:rel => "stylesheet", :type => "text/css", :href => "css/style.css"}
     %title="DiversIT: Question Archive"
   %body
-    = haml :header
-    = 'All Questions:<br />'
-    - @questions.each do |question|
-      .questionmini
-        %a{:href=>'question/'+question.id.to_s}
-          = question.body.to_s
-          %br
-          = "&nbsp;&nbsp;&nbsp;&nbsp;"+question.timestamp.to_s[0..9]
-          %br
-          %br
+    .everything
+      = haml :header
+      = 'All Questions:<br />'
+      - @questions.each do |question|
+        .questionmini
+          %a{:href=>'question/'+question.id.to_s}
+            = question.body.to_s
+            %br
+            = "&nbsp;&nbsp;&nbsp;&nbsp;"+question.timestamp.to_s[0..9]
+            %br
+            %br
 
-    %br
-    %br
-    %a{:href=>'addquestion'}
-      = 'Add a new Question'
+      %br
+      %br
+      %a{:href=>'addquestion'}
+        = 'Add a new Question'
