@@ -1,18 +1,24 @@
 class DiversitPie < Gruff::Mini::Pie
   def initialize_ivars()
     super
-
-    @hide_title = false
   end
 
   def theme_diversit()
-    @red = '#ff3333'
-    @green = '#339933'
-    @blue = '#336699'
-    @yellow = '#FFFF00'
+    @green1 = '#388f42'
+    @green2 = '#82dc86'
+    @green3 = '#20cd20'
+    @green4 = '#2f7d2d'
     @black = 'black'
-    @colors = [@red, @green, @blue, @yellow, @black]
+    @colors = [@green1, @green2, @green3, @green4, @black]
+
     @font = 'helvetica'
+    @hide_legend = true
+    @hide_line_markers = true
+    @hide_line_numbers = true
+    @hide_title = false
+    @legend_box_size = 30
+    @legend_font_size = 30
+    @marker_font_size = 30
 
     self.theme = {
       :colors => @colors,

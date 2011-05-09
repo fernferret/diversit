@@ -1,0 +1,76 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'content="text/html; charset=utf-8;'}
+    %title DiversIT: about
+    :css
+    body {
+      background-image:url('https://github.com/FernFerret/diversit/raw/master/public/images/bg.png');
+      background-repeat:repeat;
+      color:#a0a0a0;
+      font-family:helvetica,sans-serif;
+      font-size:100%;
+      text-shadow: 0px 0px 1px #404040;
+    }
+    #container {
+      margin: 0 auto;
+      width: 700px;
+    }
+                h1 { font-size: 3.8em; margin-bottom: 3px; color:#18CC45;}
+                h1 .small { font-size: 0.4em; }
+                h1 .smaller { font-size: 0.35em; }
+                h1 a { text-decoration: none }
+                h2 { font-size: 1.5em; color:#18CC45;}
+    h3 { text-align: center; color:#18CC45;}
+    a { color: #25E856; }
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .download { float: right; }
+                pre { background: #000; color: #fff; padding: 15px;}
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
+          %body
+    %a{:href => "http://github.com/FernFerret/diversit"}
+      %img{:alt => "Fork me on GitHub", :src => "http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png", :style => "position: absolute; top: 0; right: 0; border: 0;"}/
+    #container
+      .download
+        %a{:href => "http://github.com/FernFerret/diversit/zipball/master"}
+          %img{:border => "0", :src => "http://github.com/images/modules/download/zip.png", :width => "90"}/
+        %a{:href => "http://github.com/FernFerret/diversit/tarball/master"}
+          %img{:border => "0", :src => "http://github.com/images/modules/download/tar.png", :width => "90"}/
+      %h1
+        %a{:href => "http://github.com/FernFerret/diversit"} DiversIT
+        %br/
+        %span.small
+          by
+          %a{:href => "http://github.com/FernFerret"} Eric Stokes
+          \&
+          %a{:href => "http://github.com/kennygao"} Kenny Gao
+      .description
+        DiversIT is a web application that allows individuals to connect with others giving the ability go step outside their traditional social groups and interact in a more diverse way.
+      %p The world is a mosaic of unique individuals. It is easy, however, to take people's differences for granted. Many people have stereotypes and perceptions of others that conceal the truth about differences between them. In order to help people appreciate differences about one another, we designed DiversIT, which facilitates communication between all people by leveraging the power of the Internet. By centering discussion on a daily question, DiversIT establishes common ground through which people can begin interacting. This increased communication can lead to an improved understanding of each other. DiversIT was developed with user-centered design processes, incorporating potential users into every part of the design process.
+      %h2 Authors
+      %p
+        Eric Stokes (stokesej@gmail.com)
+        %br>/
+        Kenny Gao (gaot@rose-hulman.edu)
+        %br>/
+        Tim Ekl (ekltl@gmail.com)
+        %br>/
+        Sarah Jabon (jabonsa@rose-hulman.edu)
+        %br>/
+        Joe Salisbury (salisbjm@rose-hulman.edu)
+      %h2 Download
+      %p
+        You can download this project in either
+        %a{:href => "http://github.com/FernFerret/diversit/zipball/master"} zip
+        or
+        %a{:href => "http://github.com/FernFerret/diversit/tarball/master"} tar
+        formats.
+      %p
+        You can also clone the project with
+        %a{:href => "http://git-scm.com"} Git
+        by running:
+        %pre $ git clone git://github.com/FernFerret/diversit
+      .footer
+        get the source code on GitHub :
+        %a{:href => "http://github.com/FernFerret/diversit"} FernFerret/diversit

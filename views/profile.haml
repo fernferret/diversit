@@ -1,0 +1,22 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'content="text/html; charset=utf-8;'}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "/css/style.css"}
+    %title
+      = 'DiversIT: profile: ' + @user.username
+  %body
+    = haml :header
+    .container{:id => 'profile'}
+      = 'Username: ' + @user.username
+      %br
+      = 'Real name: ' + @user.firstname + ' ' + @user.lastname
+      %br
+      = 'Age: ' + ((Date.today - @user.dob).to_i/365).to_s
+      %br
+      = 'Gender: ' + @user.gender
+      %br
+      = 'Income: ' + @user.income.to_s
+      %br
+      = 'Number of responses: ' + @user.response.all().length.to_s
+    = haml :footer

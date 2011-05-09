@@ -137,6 +137,20 @@ post '/register' do
   redirect '/'
 end
 
+get '/profile' do
+  if session[:user] != nil
+    @user = User.first(:username => session[:user].username)
+  else
+    redirect '/register'
+  end
+
+  haml :profile
+end
+
+get '/about' do
+  haml :about
+end
+
 get '/login' do
   haml :login
 end

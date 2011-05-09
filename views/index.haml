@@ -10,13 +10,33 @@
       .question
         = @question.body
       .answerbox
-        - if @u
-          .answerarea
-            %form{:action => '/question/'+@question.id.to_s, :method => 'POST'}
-              %input{:type => 'text', :name => 'response'}
-              %input{:type => 'submit', :value => 'Answer!'}
-        - else
-          .menulink.container{:id => 'answernow'}
-            %a{:href => '/register'}
-              = 'Answer Now!'
+        .container{:id => 'index'}
+          - if @u
+            .answerarea
+              %form{:action => '/question/'+@question.id.to_s, :method => 'POST'}
+                - if @question.type == 'free'
+                  .row
+                    %input{:type=>'text', :name=>'response'}
+                - elsif @question.type == 'mc'
+                  .row
+                    %input{:type=>'radio', :name=>'choice', :value=>'1', :checked=>'yes'}
+                      = @question.choice[0].body
+                  .row
+                    %input{:type=>'radio', :name=>'choice', :value=>'2'}
+                      = @question.choice[1].body
+                  .row
+                    %input{:type=>'radio', :name=>'choice', :value=>'3'}
+                      = @question.choice[2].body
+                  .row
+                    %input{:type=>'radio', :name=>'choice', :value=>'4'}
+                      = @question.choice[3].body
+                  .row
+                    = 'Comment: '
+                    %input{:type=>'text', :name=>'response'}
+                .row
+                  %input{:type => 'submit', :value => 'Answer!'}
+          - else
+            .menulink.container{:id => 'answernow'}
+              %a{:href => '/register'}
+                = 'Answer Now!'
     = haml :footer
