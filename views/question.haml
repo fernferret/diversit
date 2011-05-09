@@ -93,10 +93,7 @@
 
       - @responses.each do |response|
         .response
-          - if logged_in?
-            = showTree response
-          - else
-            = showTreeNoLink response
+          = showTree response
       %a{:href=>'/questions'}
         = 'View all questions.'
     = haml :footer

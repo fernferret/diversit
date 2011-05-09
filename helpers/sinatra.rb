@@ -61,20 +61,4 @@ helpers do
     tree += "</ul>"
     return tree
   end
-
-  def showTreeNoLink root
-    tree = ""
-    tree += "<ul>"
-    tree += "<li>"
-    tree += root.body
-    unless root.children.nil?
-      root.children.each do |child|
-        tree += showTreeNoLink child
-      end
-    end
-    tree += "</li>"
-    tree += "</ul>"
-    return tree
-  end
-
 end
